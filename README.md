@@ -59,8 +59,12 @@ The built `data/index.json` and `data/vectors.npy` are committed, so the deploye
 ## Limitations
 
 - Only the pages in `urls.txt` are indexed, so non-engineering majors and departments such as Economics or Psychology are not covered, and course descriptions exist only for the listed departments.
-- Answers are capped at 150 words, so a long list of electives may be summarized rather than complete.
+- Answers are capped at 300 words (`ANSWER_MAX_WORDS` in `app.py`), so a very long list of electives may be summarized.
 - Catalog pages change. Re-run the scrape and index to refresh, and always confirm with an academic advisor.
 - The daily limit is per server process and resets on restart. IPs behind a shared proxy may share a count.
 - Retrieval uses fixed-size chunks, so a requirement split across chunks can be missed.
 - Answers come from a language model and can be wrong even with sources.
+
+## To do: deferred pages
+
+Because the free Gemini tier allows only 1,000 embeddings a day, some pages were scraped but not indexed: Physics, Chemistry, Cognitive Science, Biology, Engineering course descriptions and Admission. See the DEFERRED block at the bottom of `urls.txt` for how to add them back.

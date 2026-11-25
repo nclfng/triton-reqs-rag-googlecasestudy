@@ -4,7 +4,6 @@ https://catalog.ucsd.edu/undergraduate/overview/index.html
 https://catalog.ucsd.edu/undergraduate/degrees-offered/index.html
 https://catalog.ucsd.edu/undergraduate/degree-requirements/index.html
 https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html
-https://catalog.ucsd.edu/undergraduate/admission/index.html
 # Colleges
 https://catalog.ucsd.edu/undergraduate/colleges/revelle-college/index.html
 https://catalog.ucsd.edu/undergraduate/colleges/john-muir-college/index.html
@@ -35,11 +34,7 @@ https://catalog.ucsd.edu/curric/MAE-ug.html
 https://catalog.ucsd.edu/curric/NANO-ug.html
 https://catalog.ucsd.edu/curric/SE-ug.html
 https://catalog.ucsd.edu/curric/DSC.html
-https://catalog.ucsd.edu/curric/COGS-ug.html
 https://catalog.ucsd.edu/curric/MATH-ug.html
-https://catalog.ucsd.edu/curric/PHYS-ug.html
-https://catalog.ucsd.edu/curric/CHEM-ug.html
-https://catalog.ucsd.edu/curric/BIOL-ug.html
 # Course descriptions
 https://catalog.ucsd.edu/courses/CSE.html
 https://catalog.ucsd.edu/courses/ECE.html
@@ -48,8 +43,16 @@ https://catalog.ucsd.edu/courses/NANO.html
 https://catalog.ucsd.edu/courses/SE.html
 https://catalog.ucsd.edu/courses/BENG.html
 https://catalog.ucsd.edu/courses/DSC.html
-https://catalog.ucsd.edu/courses/ENG.html
 https://catalog.ucsd.edu/courses/MATH.html
-https://catalog.ucsd.edu/courses/COGS.html
-https://catalog.ucsd.edu/courses/PHYS.html
-https://catalog.ucsd.edu/courses/CHEM.html
+
+# DEFERRED: scraped but not indexed yet (free Gemini embedding limit is 1000/day).
+# To add later: move the matching file from data/raw_deferred/ back to data/raw/, uncomment, run build_index.py.
+# https://catalog.ucsd.edu/undergraduate/admission/index.html
+# https://catalog.ucsd.edu/curric/COGS-ug.html
+# https://catalog.ucsd.edu/curric/PHYS-ug.html
+# https://catalog.ucsd.edu/curric/CHEM-ug.html
+# https://catalog.ucsd.edu/curric/BIOL-ug.html
+# https://catalog.ucsd.edu/courses/ENG.html
+# https://catalog.ucsd.edu/courses/COGS.html
+# https://catalog.ucsd.edu/courses/PHYS.html
+# https://catalog.ucsd.edu/courses/CHEM.html

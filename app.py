@@ -22,11 +22,12 @@ CHUNK_OVERLAP = 40                    # words repeated between neighbouring chun
 TOP_K = 8                             # chunks sent to Gemini (more pages are indexed now)
 DAILY_LIMIT = 10                      # questions per IP per day on the server key
 MAX_QUESTION_CHARS = 400
+ANSWER_MAX_WORDS = 300                # raised from 150 so elective lists fit
 # --------------------------------------------------
 
-RULES = """You answer student questions about UCSD requirements using ONLY the numbered chunks below.
+RULES = f"""You answer student questions about UCSD requirements using ONLY the numbered chunks below.
 - If the chunks do not contain the answer, say the catalog pages indexed here do not cover it and suggest checking with an academic advisor.
-- Keep the answer under 150 words, in plain language. Plain text only: no markdown, no asterisks, no bullet symbols.
+- Keep the answer under {ANSWER_MAX_WORDS} words, in plain language. Plain text only: no markdown, no asterisks, no bullet symbols.
 - Cite sources like [1], [2], matching the chunk numbers.
 - Never invent course codes, unit counts, or policies.
 - End with one line telling the student to confirm with their advisor."""
