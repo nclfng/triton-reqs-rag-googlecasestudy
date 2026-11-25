@@ -1,4 +1,4 @@
-"""Check retrieval: does the expected source page show up in the top 5 chunks?
+"""Check retrieval: does the expected source page show up in the top-k chunks?
 
 Run from the project root:  python eval/run_eval.py
 """
@@ -24,7 +24,7 @@ def main():
         rank = ranks[0] if ranks else "-"
         print(f"{i:<3} {'PASS' if ranks else 'FAIL':<6} {rank:<5} {item['question'][:70]}")
         time.sleep(1)  # stay under the free-tier embedding rate limit
-    print(f"\nExpected source in top 5: {hits}/{len(questions)} = {hits / len(questions):.0%}")
+    print(f"\nExpected source in top-k: {hits}/{len(questions)} = {hits / len(questions):.0%}")
 
 
 if __name__ == "__main__":

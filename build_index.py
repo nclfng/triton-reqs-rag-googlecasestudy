@@ -1,4 +1,5 @@
 """Chunk data/raw/*.md by heading, embed each chunk with Gemini, save the index."""
+import hashlib
 import json
 import os
 import re
@@ -53,8 +54,11 @@ def chunk_page(fields, body):
     return chunks
 
 
+CACHE_FILE = Path("data/embed_cache.json")  # text hash -> vector, so a rerun never repeats work
+
+
 def embed_batch(client, batch):
-    """Embed one batch. The free tier allows ~100 chunks a minute, so wait and retry on 429."""
+    """Embed one batch, waiting out Gemini's free-tier limits (per minute and per day)."""
     while True:
         try:
             return client.models.embed_content(
@@ -63,18 +67,26 @@ def embed_batch(client, batch):
         except errors.ClientError as error:
             if error.code != 429:
                 raise
-            print("rate limited, waiting 40s...")
-            time.sleep(40)
+            per_day = "per day" in str(error)
+            wait = 1800 if per_day else 40
+            print(f"{'daily' if per_day else 'per-minute'} limit hit, waiting {wait}s...", flush=True)
+            time.sleep(wait)
 
 
 def embed(client, texts):
-    """Embed texts in batches. Returns a list of vectors."""
-    vectors = []
-    for i in range(0, len(texts), BATCH_SIZE):
-        response = embed_batch(client, texts[i:i + BATCH_SIZE])
-        vectors += [e.values for e in response.embeddings]
-        print(f"embedded {len(vectors)}/{len(texts)}")
-    return vectors
+    """Embed texts in batches, saving each finished batch to the cache. Returns vectors in order."""
+    cache = json.loads(CACHE_FILE.read_text()) if CACHE_FILE.exists() else {}
+    keys = [hashlib.md5(t.encode()).hexdigest() for t in texts]
+    todo = [i for i, k in enumerate(keys) if k not in cache]
+    print(f"{len(cache)} cached, {len(todo)} to embed", flush=True)
+    for start in range(0, len(todo), BATCH_SIZE):
+        ids = todo[start:start + BATCH_SIZE]
+        response = embed_batch(client, [texts[i] for i in ids])
+        for i, e in zip(ids, response.embeddings):
+            cache[keys[i]] = e.values
+        CACHE_FILE.write_text(json.dumps(cache))
+        print(f"embedded {start + len(ids)}/{len(todo)}", flush=True)
+    return [cache[k] for k in keys]
 
 
 def main():

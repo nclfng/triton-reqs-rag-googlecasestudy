@@ -8,10 +8,10 @@ A small question-answering tool for UCSD general college requirements (Warren Co
 
 1. `scrape.py` reads `urls.txt` and saves each public catalog page as markdown (via Context.dev) in `data/raw/`. Pages already saved are skipped.
 2. `build_index.py` splits the pages by heading into chunks of about 400 words, embeds each chunk with Gemini, and saves `data/index.json` and `data/vectors.npy`.
-3. `app.py` embeds the question, finds the 5 closest chunks by cosine similarity (plain numpy, no vector database), and asks a Gemini Flash model to answer only from those chunks, citing them as [1], [2].
+3. `app.py` embeds the question, finds the 8 closest chunks by cosine similarity (plain numpy, no vector database), and asks a Gemini Flash model to answer only from those chunks, citing them as [1], [2].
 4. The page in `static/` is plain HTML, CSS and JS.
 
-Indexed pages: Earl Warren College, Undergraduate Degree Requirements, Graduation Requirements, and Computer Science and Engineering (which contains the BS Artificial Intelligence program).
+Indexed pages (about 50, listed in `urls.txt`): university-wide degree and graduation requirements, all seven undergraduate colleges and their writing/core sequences, the Jacobs School of Engineering and its majors (BENG, CSE including the BS in Artificial Intelligence, ECE, MAE, NANO, SE), Data Science, Cognitive Science, Math, Physics, Chemistry, Biology, and course descriptions for the engineering and prerequisite departments.
 
 ## Setup
 
@@ -46,7 +46,7 @@ Open http://localhost:8000. Settings (models, chunk size, top-k, daily limit) ar
 
 ## Evaluation
 
-Fill `eval/questions.json` with `{question, expected_url_substring}` pairs, then run `python eval/run_eval.py`. It reports how often the expected page appears in the top 5 retrieved chunks.
+Fill `eval/questions.json` with `{question, expected_url_substring}` pairs, then run `python eval/run_eval.py`. It reports how often the expected page appears in the top 8 retrieved chunks.
 
 ## Deploy
 
@@ -58,7 +58,8 @@ The built `data/index.json` and `data/vectors.npy` are committed, so the deploye
 
 ## Limitations
 
-- Only four catalog pages are indexed, so many questions (other majors, colleges, course details) are not covered.
+- Only the pages in `urls.txt` are indexed, so non-engineering majors and departments such as Economics or Psychology are not covered, and course descriptions exist only for the listed departments.
+- Answers are capped at 150 words, so a long list of electives may be summarized rather than complete.
 - Catalog pages change. Re-run the scrape and index to refresh, and always confirm with an academic advisor.
 - The daily limit is per server process and resets on restart. IPs behind a shared proxy may share a count.
 - Retrieval uses fixed-size chunks, so a requirement split across chunks can be missed.

@@ -1,5 +1,55 @@
 # One public UCSD catalog URL per line. Lines starting with # are ignored.
-https://catalog.ucsd.edu/undergraduate/colleges/earl-warren-college/index.html
+# University-wide requirements
+https://catalog.ucsd.edu/undergraduate/overview/index.html
+https://catalog.ucsd.edu/undergraduate/degrees-offered/index.html
 https://catalog.ucsd.edu/undergraduate/degree-requirements/index.html
 https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html
+https://catalog.ucsd.edu/undergraduate/admission/index.html
+# Colleges
+https://catalog.ucsd.edu/undergraduate/colleges/revelle-college/index.html
+https://catalog.ucsd.edu/undergraduate/colleges/john-muir-college/index.html
+https://catalog.ucsd.edu/undergraduate/colleges/thurgood-marshall-college/index.html
+https://catalog.ucsd.edu/undergraduate/colleges/earl-warren-college/index.html
+https://catalog.ucsd.edu/undergraduate/colleges/eleanor-roosevelt-college/index.html
+https://catalog.ucsd.edu/undergraduate/colleges/sixth-college/index.html
+https://catalog.ucsd.edu/undergraduate/colleges/seventh-college/index.html
+# College writing / core sequences
+https://catalog.ucsd.edu/curric/WARR.html
+https://catalog.ucsd.edu/curric/REV.html
+https://catalog.ucsd.edu/curric/MCWP.html
+https://catalog.ucsd.edu/curric/ERC.html
+https://catalog.ucsd.edu/curric/SXTH.html
+https://catalog.ucsd.edu/curric/SEV.html
+https://catalog.ucsd.edu/curric/TMC.html
+https://catalog.ucsd.edu/curric/HUM.html
+https://catalog.ucsd.edu/curric/DOC.html
+https://catalog.ucsd.edu/curric/CAT.html
+https://catalog.ucsd.edu/curric/MMW.html
+https://catalog.ucsd.edu/curric/SYN.html
+# Engineering majors and related programs
+https://catalog.ucsd.edu/curric/ENG.html
+https://catalog.ucsd.edu/curric/BENG-ug.html
 https://catalog.ucsd.edu/curric/CSE-ug.html
+https://catalog.ucsd.edu/curric/ECE-ug.html
+https://catalog.ucsd.edu/curric/MAE-ug.html
+https://catalog.ucsd.edu/curric/NANO-ug.html
+https://catalog.ucsd.edu/curric/SE-ug.html
+https://catalog.ucsd.edu/curric/DSC.html
+https://catalog.ucsd.edu/curric/COGS-ug.html
+https://catalog.ucsd.edu/curric/MATH-ug.html
+https://catalog.ucsd.edu/curric/PHYS-ug.html
+https://catalog.ucsd.edu/curric/CHEM-ug.html
+https://catalog.ucsd.edu/curric/BIOL-ug.html
+# Course descriptions
+https://catalog.ucsd.edu/courses/CSE.html
+https://catalog.ucsd.edu/courses/ECE.html
+https://catalog.ucsd.edu/courses/MAE.html
+https://catalog.ucsd.edu/courses/NANO.html
+https://catalog.ucsd.edu/courses/SE.html
+https://catalog.ucsd.edu/courses/BENG.html
+https://catalog.ucsd.edu/courses/DSC.html
+https://catalog.ucsd.edu/courses/ENG.html
+https://catalog.ucsd.edu/courses/MATH.html
+https://catalog.ucsd.edu/courses/COGS.html
+https://catalog.ucsd.edu/courses/PHYS.html
+https://catalog.ucsd.edu/courses/CHEM.html

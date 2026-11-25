@@ -3,3 +3,4 @@
 data/raw
 .git
 __pycache__
+data/embed_cache.json

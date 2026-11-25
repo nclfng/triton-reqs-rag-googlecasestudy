@@ -27,6 +27,8 @@ def scrape_page(client, url):
     if not result.markdown.success:
         raise RuntimeError(f"markdown failed: {result.markdown.error_code}")
     title = (result.metadata.title if result.metadata else None) or url
+    if "/courses/" in url:  # same title as the program page, so tell them apart
+        title += " - Course Descriptions"
     return title, result.markdown.data
 
 
