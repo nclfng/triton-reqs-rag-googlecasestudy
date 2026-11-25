@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Triton Requirements Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="page">
+  <aside class="sidebar">
+    <header>
+      <h1>Triton Requirements Guide</h1>
+      <p>A requirements lookup for Warren College general education and the BS in Artificial Intelligence. Answers come only from the catalog pages listed below.</p>
+    </header>
+    <details id="sidebar-details" open>
+      <summary>Details and settings</summary>
+      <nav aria-label="Indexed sources">
+        <h2>Indexed sources</h2>
+        <ul id="sources" class="source-list"></ul>
+      </nav>
+      <section>
+        <h2>Questions remaining today</h2>
+        <p id="remaining" class="mono big">10</p>
+      </section>
+      <section>
+        <label for="own-key"><h2>Use your own Gemini key</h2></label>
+        <input id="own-key" type="password" autocomplete="off" placeholder="Paste key (optional)">
+        <p class="note">Stays in this browser tab and is not stored.</p>
+      </section>
+    </details>
+  </aside>
+
+  <main class="main">
+    <form id="ask-form">
+      <label for="question"><h2>Your question</h2></label>
+      <textarea id="question" rows="4" maxlength="400" placeholder="How many upper-division electives do I need?"></textarea>
+      <div class="form-row">
+        <button type="submit" id="look-up">Look up</button>
+        <span id="count" class="mono small">0 / 400</span>
+      </div>
+    </form>
+    <section id="answer-area" aria-live="polite">
+      <h2>Answer</h2>
+      <div id="answer" class="answer"><p class="note">Ask a question to see an answer here.</p></div>
+    </section>
+  </main>
+
+  <aside class="right">
+    <h2>Sources used</h2>
+    <ol id="citations" class="citations"><li class="note">None yet.</li></ol>
+  </aside>
+</div>
+<footer>
+  <p class="mono small">Built with Gemini API (<span id="model">model shown after first answer</span>) and Context.dev. Source pages are public UCSD catalog pages.</p>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

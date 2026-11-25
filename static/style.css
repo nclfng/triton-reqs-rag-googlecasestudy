@@ -1,0 +1,100 @@
+/* Triton Requirements Guide - one plain stylesheet */
+:root {
+  --paper: #F4F1EA;
+  --ink: #1B1B1B;
+  --navy: #182B49;
+  --gold: #C69214;   /* only for link hover and the active state */
+  --rule: #D9D4C7;
+  --serif: "Source Serif 4", Georgia, serif;
+  --sans: "IBM Plex Sans", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+body { overflow-wrap: anywhere; margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.6 var(--sans); }
+h1, h2 { font-family: var(--serif); color: var(--navy); font-weight: 600; margin: 0 0 0.5rem; }
+h1 { font-size: clamp(1.4rem, 1rem + 1.2vw, 1.9rem); line-height: 1.2; }
+h2 { font-size: 1.05rem; }
+p { margin: 0 0 0.75rem; }
+a { color: var(--navy); }
+a:hover { color: var(--gold); }
+
+/* Three regions divided by hairlines */
+.page {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) minmax(0, 320px);
+  grid-template-areas: "side main right";
+  min-height: 100vh;
+}
+.sidebar, .main, .right { padding: 1.5rem; min-width: 0; }
+.sidebar { grid-area: side; border-right: 1px solid var(--rule); }
+.main { grid-area: main; }
+.right { grid-area: right; border-left: 1px solid var(--rule); }
+.main > * { max-width: 70ch; }
+
+/* Sidebar */
+summary { display: none; }  /* the toggle only shows on narrow screens */
+section, nav { border-top: 1px solid var(--rule); padding-top: 1rem; margin-top: 1rem; }
+.source-list { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+.source-list li { margin-bottom: 0.6rem; }
+.source-list .date, .note { font-size: 0.85rem; color: #55524A; }
+.source-list .date { font-family: var(--mono); display: block; }
+input[type="password"], textarea {
+  width: 100%; font: inherit; color: var(--ink); background: #FBF9F4;
+  border: 1px solid var(--rule); border-radius: 2px; padding: 0.5rem;
+}
+input:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: 0; border-color: var(--navy); }
+textarea { resize: vertical; }
+
+/* Mono bits */
+.mono { font-family: var(--mono); }
+.big { font-size: 1.6rem; margin: 0; }
+.small { font-size: 0.8rem; }
+
+/* Form */
+.form-row { display: flex; align-items: center; gap: 1rem; margin-top: 0.75rem; }
+button {
+  font: 500 0.95rem var(--sans); color: #fff; background: var(--navy);
+  border: 1px solid var(--navy); border-radius: 2px; padding: 0.5rem 1.4rem; cursor: pointer;
+}
+button:hover:not(:disabled) { border-color: var(--gold); }
+button:active:not(:disabled) { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+button:disabled { opacity: 0.6; cursor: default; }
+
+/* Answer */
+#answer-area { margin-top: 1.5rem; }
+.answer p.error { border-left: 3px solid var(--navy); padding-left: 0.75rem; }
+.cite { font-family: var(--mono); font-size: 0.8em; color: var(--navy); }
+
+/* Sources used */
+.citations { list-style: none; margin: 0; padding: 0; }
+.citations li { border-top: 1px solid var(--rule); padding: 0.75rem 0; font-size: 0.9rem; }
+.citations li:first-child { border-top: 0; padding-top: 0; }
+.citations .num { font-family: var(--mono); color: var(--navy); }
+.citations a { font-family: var(--mono); font-size: 0.8rem; overflow-wrap: anywhere; display: block; margin: 0.25rem 0; }
+.excerpt { margin: 0; color: #3A3832; overflow-wrap: anywhere; }
+
+footer { border-top: 1px solid var(--rule); padding: 1rem 1.5rem; }
+footer p { margin: 0; overflow-wrap: anywhere; }
+
+/* Right column drops below the main column */
+@media (max-width: 1100px) {
+  .page {
+    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-areas: "side main" "side right";
+    min-height: 0;
+  }
+  .right { border-left: 0; border-top: 1px solid var(--rule); }
+}
+
+/* Everything stacks; the sidebar becomes a collapsible section */
+@media (max-width: 720px) {
+  .page { grid-template-columns: minmax(0, 1fr); grid-template-areas: "side" "main" "right"; }
+  .sidebar { border-right: 0; border-bottom: 1px solid var(--rule); }
+  summary {
+    display: block; cursor: pointer; font-family: var(--mono); font-size: 0.85rem;
+    color: var(--navy); border-top: 1px solid var(--rule); padding-top: 0.75rem;
+  }
+  summary:hover { color: var(--gold); }
+  details[open] summary { margin-bottom: 0.5rem; }
+}

@@ -1,2 +1,5 @@
 # One public UCSD catalog URL per line. Lines starting with # are ignored.
-# Example: https://catalog.ucsd.edu/...
+https://catalog.ucsd.edu/undergraduate/colleges/earl-warren-college/index.html
+https://catalog.ucsd.edu/undergraduate/degree-requirements/index.html
+https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html
+https://catalog.ucsd.edu/curric/CSE-ug.html

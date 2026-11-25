@@ -2,12 +2,13 @@
 import json
 import os
 import re
+import time
 from pathlib import Path
 
 import numpy as np
 from dotenv import load_dotenv
 from google import genai
-from google.genai import types
+from google.genai import errors, types
 
 from app import CHUNK_OVERLAP, CHUNK_WORDS, EMBED_MODEL
 
@@ -52,13 +53,25 @@ def chunk_page(fields, body):
     return chunks
 
 
+def embed_batch(client, batch):
+    """Embed one batch. The free tier allows ~100 chunks a minute, so wait and retry on 429."""
+    while True:
+        try:
+            return client.models.embed_content(
+                model=EMBED_MODEL, contents=batch,
+                config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"))
+        except errors.ClientError as error:
+            if error.code != 429:
+                raise
+            print("rate limited, waiting 40s...")
+            time.sleep(40)
+
+
 def embed(client, texts):
     """Embed texts in batches. Returns a list of vectors."""
     vectors = []
     for i in range(0, len(texts), BATCH_SIZE):
-        response = client.models.embed_content(
-            model=EMBED_MODEL, contents=texts[i:i + BATCH_SIZE],
-            config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"))
+        response = embed_batch(client, texts[i:i + BATCH_SIZE])
         vectors += [e.values for e in response.embeddings]
         print(f"embedded {len(vectors)}/{len(texts)}")
     return vectors
