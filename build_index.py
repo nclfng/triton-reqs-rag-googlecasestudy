@@ -13,7 +13,7 @@ from google.genai import errors, types
 
 from app import CHUNK_OVERLAP, CHUNK_WORDS, EMBED_MODEL
 
-BATCH_SIZE = 50  # chunks per embedding request
+BATCH_SIZE = 20  # chunks per request; the free tier also caps tokens per minute (30,000)
 
 
 def read_page(path):
