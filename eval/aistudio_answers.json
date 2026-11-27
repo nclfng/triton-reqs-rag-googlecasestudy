@@ -1,5 +1,5 @@
 {
- "README": "Fill 'answer' with what AI Studio returned, then 'score' (0-2) and 'citation' (true/false) using the rubric in grades.json. 'bare' = the question typed into AI Studio with no sources. 'pasted' = the files in eval/ai_studio pasted in (this tests the model, not the data).",
+ "README": "Answers from Google AI Studio. 'pasted' = the files in eval/ai_studio pasted in (our rules and retrieved sources), so it tests the model, not the data. 'bare' = the question alone with no sources (not run yet): fill 'answer', then 'score' (0-2), 'citation' (true/false), 'failure' ('none', 'incomplete', 'not_covered') using the rubric in grades.json. Model used in AI Studio was not recorded.",
  "bare": [
   {
    "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
@@ -82,80 +82,136 @@
  "pasted": [
   {
    "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "The BS in Artificial Intelligence requires sixty-four upper-division units in total: twenty units of core courses and forty-four units of elective courses [1].\n\nThe forty-four units of elective courses break down into three parts: four units of ethics (CSE 194, PHIL 174, or POLI 121D), twelve units of AI electives chosen from an approved list that are not used for other core or breadth requirements, and twenty-eight units of CSE electives [1]. Within those twenty-eight units of CSE electives, you must take at least eight units tagged with Systems, at least eight units tagged with Theory/Abstraction, at least eight units tagged with Applications of Computing, and at least four additional units of CSE upper-division, graduate, or approved non-CSE courses carrying one of those three tags [1].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "Correct and complete: 64 = 20 core + 44 elective, with the 4 ethics units, 12 AI and 28 CSE itemised. Better than our live answer.",
+   "cited_pages": [
+    "curric/CSE-ug.html"
+   ]
   },
   {
    "question": "What are the Warren College writing requirements?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "After completing the UC Entry Level Writing Requirement (ELWR), all first-year Warren College students must complete a two-course writing sequence, WCWP 10A-B, for a letter grade [1, 2, 8]. Invited first-year students who meet Warren College Honors Society requirements may instead fulfill this requirement by taking the two-course Warren College Scholars Seminar, WARR 11A-B, for a letter grade [3].\n\nFollowing WCWP 10A-B, all students entering as first-year students must also take two Ethics and Society courses for a letter grade, PHIL 27 or POLI 27 followed by PHIL 28 or POLI 28, in which students continue developing their writing skills [2, 5]. Transfer students satisfy the Warren writing requirement by completing Academic Writing (WCWP 100) [4].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "WCWP 10A-B, WARR 11A-B, PHIL/POLI 27-28. The transfer line is thinner (no extra upper-division course).",
+   "cited_pages": [
+    "curric/WARR.html",
+    "undergraduate/colleges/earl-warren-college/index.html",
+    "undergraduate/degree-requirements/index.html"
+   ]
   },
   {
    "question": "What is the Revelle College Humanities sequence?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "The Revelle College Humanities sequence is a five-quarter interdisciplinary sequence (HUM 1 through HUM 5) in history, philosophy, and literature that focuses on major aspects of the Western humanistic tradition and meets both the humanities and writing requirements of Revelle College [1, 2].\n\nIt consists of five courses: two six-unit courses (HUM 1 and HUM 2) that provide intensive instruction in university-level writing, followed by three four-unit courses (HUM 3, HUM 4, and HUM 5) with less intensive writing instruction [1, 5]. Students must satisfy the UC Entry Level Writing requirement before registering for any course in the sequence, and HUM 1 and HUM 2 must be completed before HUM 3-4-5 [1].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "HUM 1-5 with units and ordering.",
+   "cited_pages": [
+    "curric/HUM.html",
+    "undergraduate/colleges/revelle-college/index.html"
+   ]
   },
   {
    "question": "What are the general education requirements at Sixth College?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "Sixth College general education requires seven areas [1]. First, Culture, Art, and Technology consists of three courses (CAT 1, 2, and 3), including two six-unit quarters of intensive instruction in university-level writing [1]. Second, Information Technology Fluency requires one course [1]. Third, Modes of Inquiry requires seven courses: two in social sciences, two in humanities, two in natural sciences, and one in math/logic [1, 7].\n\nFourth, Exploring Data requires one course in statistical methods [1]. Fifth, Art Making requires two courses in literature, music, theatre and dance, or visual arts [1, 6]. Sixth, Experiential Learning requires one four-unit upper-division course [1]. Seventh, Upper-Division Writing requires one four-unit course (CAT 125 or CAT 125R) [1]. Transfer students may meet all or most lower-division requirements before entering through transfer agreements [4].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "All seven areas.",
+   "cited_pages": [
+    "undergraduate/colleges/sixth-college/index.html",
+    "undergraduate/graduation-requirements/index.html"
+   ]
   },
   {
    "question": "What are the required courses for the bioengineering major?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "For the Bioengineering (BS) major, required lower-division courses are MATH 20A, MATH 20B, MATH 20C, MATH 18, MATH 20D, MATH 20E, CHEM 6A, CHEM 6B, CHEM 7L, BILD 1, PHYS 2A, PHYS 2B/2BL, PHYS 2C/2CL, BENG 1, MAE 3, MAE 8, and MAE 40 [1].\n\nRequired upper-division courses for Bioengineering (BS) are BENG 100, BENG 103B, BENG 110, BENG 112A, BENG 112B, BENG 122A, BENG 125, BENG 130, BENG 140A, BENG 140B, BENG 152, BENG 172, BENG 186A, BENG 186B, BENG 187A, BENG 187B, BENG 187C, BENG 187D, BENG 188A, BENG 188B, MAE 107, MAE 150, and two technical electives selected from a department-approved list with prior approval [1, 5]. All major courses require a letter grade of C- or better [5]. Ten humanities and social science courses are also shown in the sample plan, though college requirements may be higher [1, 5]. Note that the department also offers distinct tracks for Biosystems [2], Biotechnology [3], and Bioinformatics [4].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "Full lower- and upper-division list plus the other bioengineering tracks.",
+   "cited_pages": [
+    "curric/BENG-ug.html"
+   ]
   },
   {
    "question": "What does CSE 150A cover?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "CSE 150A (Introduction to Artificial Intelligence: Probabilistic Reasoning and Decision-Making) is a four-unit upper-division course tagged Theory/Abstraction [6]. It introduces probabilistic models used in modern artificial intelligence [6].\n\nSpecific topics include probabilistic methods for reasoning and decision-making under uncertainty, inference and learning in Bayesian networks, and prediction and planning in Markov decision processes, along with applications to intelligent systems, speech and natural language processing, information retrieval, and robotics [3, 6].\n\nPlease confirm course details with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "Description, topics, units and tag.",
+   "cited_pages": [
+    "courses/CSE.html"
+   ]
   },
   {
    "question": "How many units do I need to graduate from UCSD?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "To graduate with a bachelor of arts or bachelor of science degree from UCSD, each college requires a minimum of 180 units, including at least sixty units at the upper-division level [1, 2, 5, 6, 7, 8]. Within that total, students must complete a major requiring the equivalent of twelve or more upper-division courses (forty-eight or more units) [1], along with college general education and university-wide requirements [6]. For students who enrolled prior to fall 2019, there is also a maximum unit limit of 200 units, or 240 units in Revelle and Roosevelt Colleges and 230 units in all other colleges for BS engineering candidates [3].\n\nPlease confirm your graduation requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "180 units and 60 upper-division, plus the 48-unit major rule.",
+   "cited_pages": [
+    "undergraduate/colleges/earl-warren-college/index.html",
+    "undergraduate/degree-requirements/index.html",
+    "undergraduate/graduation-requirements/index.html"
+   ]
   },
   {
    "question": "What math courses does a mechanical engineering major need?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "Based on the recommended course sequence for Mechanical Engineering, the required mathematics courses are MATH 20A, MATH 20B, MATH 20C, MATH 18, MATH 20D, and MATH 20E [1]. Transfer applicants to mechanical engineering must complete screening math courses MATH 20A, MATH 20B, MATH 20C, MATH 20D, and linear algebra (MATH 18 or 20F) [5]. Upper-division or graduate mathematics courses can also count as technical electives if preapproved by the department [1].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "MATH 18, 20A-E, plus the transfer screening courses.",
+   "cited_pages": [
+    "curric/MAE-ug.html"
+   ]
   },
   {
    "question": "I took CSE 12 and 21. What should I take next as an AI major?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "Since you finished CSE 12 and CSE 21, I counted one of CSE 20 or MATH 15A or MATH 31CH and one of CSE 11 or CSE 8B as done.\n\nRight now, the required courses marked ready with all prerequisites met are CSE 15L (2 units) or CSE 29 (4 units), and CSE 25 (4 units) [1, 10]. For your math sequence, check the prerequisites yourself for MATH 20A (Math Placement Exam qualifying score, AP Precalculus score of 5, AP Calculus AB score of 3 or equivalent AB subscore, MATH 4C, or MATH 10A) and MATH 18 (qualifying score, AP Calculus AB score of 3 or equivalent AB subscore, MATH 4C, MATH 10A, or MATH 20A), and later MATH 20B and MATH 20C or MATH 31BH [1, 11].\n\nAs later steps, CSE 30 is missing CSE 15L or CSE 29 or ECE 15, so take CSE 15L or CSE 29 first [10]. CSE 55 is missing CSE 25, CSE 15L or CSE 29, MATH 18 or MATH 31AH, and MATH 20C or MATH 31BH, so take CSE 25, CSE 15L or CSE 29, and those math courses first [10]. For probability and statistics, you need any one of MATH 181A, MATH 183, ECE 109, ECON 120A, or CSE 103 [1]; CSE 103 is missing MATH 20B [10], and MATH 181A, MATH 183, and ECE 109 require checking their math prerequisites [11, 12]. You will also need a general science course, a four-unit lower-division CSE requirement, upper-division core courses, four units of ethics, and later electives such as CSE 152A, CSE 158, or COGS 108 [1, 5].\n\nPlease confirm your course plan with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "Counts CSE 8B/11 and CSE 20 as done, separates Ready from blocked courses, names electives (CSE 152A, 158, COGS 108). Longest answer.",
+   "cited_pages": [
+    "courses/CSE.html",
+    "courses/ECE.html",
+    "courses/MATH.html",
+    "curric/CSE-ug.html"
+   ]
   },
   {
    "question": "What are the requirements for the bioinformatics major?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "A bioinformatics major is offered by the School of Biological Sciences, the Department of Bioengineering, and the Department of Computer Science and Engineering [1]. For the CSE BS in Computer Science with a Specialization in Bioinformatics (128 total units excluding general education), students need sixty-two or sixty-four lower-division units and sixty-four upper-division units, all taken for a letter grade of C- or better unless offered P/NP only [3, 4, 5, 7].\n\nLower-division requirements include CSE 8B or 11, CSE 12, CSE 15L or CSE 29, CSE 21, and CSE 30 (eighteen or twenty units), two additional units from an approved CSE or technical list, MATH 20A, MATH 20B, MATH 20C or MATH 31BH, and MATH 18 or MATH 31AH (sixteen units), CHEM 6A-B (eight units), CHEM 40A or CHEM 41A (four units), BILD 1, BILD 3, and BILD 4 (ten units), and PHYS 2A (four units) [4].\n\nUpper-division requirements include CSE 100, CSE 101, BIBC 100 or CHEM 114A or BIBC 102, BICD 100, BIMM 100, and BIMM 101 (four units each), a twenty-unit bioinformatics series (CSE 181 or BIMM 181 or BENG 181, CSE 182 or BIMM 182 or BENG 182, BENG 183, CSE 185, and MATH 186), and five upper-division electives [5]. The indexed catalog pages also provide a sample curriculum for Bioengineering: Bioinformatics (BS) [8], but do not cover the School of Biological Sciences bioinformatics course requirements [1].\n\nPlease confirm these requirements with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "Lower- and upper-division requirements and the bioinformatics series; says plainly the Biological Sciences course requirements are not covered.",
+   "cited_pages": [
+    "curric/BENG-ug.html",
+    "curric/BIOI-ug.html",
+    "curric/CSE-ug.html"
+   ]
   },
   {
    "question": "What are the prerequisites for PHYS 2A?",
-   "answer": null,
-   "score": null,
-   "citation": null,
-   "note": ""
+   "answer": "The prerequisites for PHYS 2A are any one of MATH 10A-B, MATH 20A, MATH 20B, MATH 20C, or MATH 31BH [1, 6]. Prior or concurrent enrollment in MATH 20B is recommended preparation [6], and several engineering program descriptions specifically note MATH 20A as the prerequisite for PHYS 2A [2, 4, 5, 7, 8].\n\nPlease confirm these prerequisites with your academic advisor.",
+   "score": 2,
+   "citation": true,
+   "failure": "none",
+   "note": "Full prerequisite line from the course page.",
+   "cited_pages": [
+    "courses/PHYS.html",
+    "curric/ECE-ug.html"
+   ]
   }
  ]
 }
