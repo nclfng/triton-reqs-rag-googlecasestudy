@@ -14,7 +14,7 @@ function escapeHtml(text) {
 // Turn plain answer text into paragraphs, with [1] style citations in mono.
 function renderAnswer(text) {
   return text.replace(/\*\*/g, "").split(/\n\s*\n|\n/).filter(Boolean)
-    .map(p => "<p>" + escapeHtml(p).replace(/\[(\d+)\]/g, '<span class="cite">[$1]</span>') + "</p>")
+    .map(p => "<p>" + escapeHtml(p).replace(/\[([\d,\s]+)\]/g, '<span class="cite">[$1]</span>') + "</p>")
     .join("");
 }
 
@@ -35,16 +35,34 @@ function showRemaining(remaining) {
   document.getElementById("remaining").textContent = remaining === null ? "no cap" : remaining;
 }
 
-async function ask(question) {
+// Sends the question and calls onText with the answer so far, as it is written.
+async function ask(question, onText) {
   const headers = { "Content-Type": "application/json" };
   const ownKey = document.getElementById("own-key").value.trim();
   if (ownKey) headers["X-Gemini-Key"] = ownKey;  // sent for this request only
-  const response = await fetch("/api/ask", {
+  const response = await fetch("/api/ask-stream", {
     method: "POST", headers, body: JSON.stringify({ question }),
   });
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.message || "Something went wrong.");
-  return data;
+  if (!response.ok) throw new Error((await response.json()).message || "Something went wrong.");
+
+  // The reply is one JSON object per line: {"delta": "..."} ... then {"done": {...}}.
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "", text = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop();  // keep any half-received line
+    for (const line of lines.filter(Boolean)) {
+      const event = JSON.parse(line);
+      if (event.error) throw new Error(event.error);
+      if (event.delta) { text += event.delta; onText(text); }
+      if (event.done) return event.done;
+    }
+  }
+  throw new Error("The answer was cut off. Please try again.");
 }
 
 form.addEventListener("submit", async (event) => {
@@ -53,8 +71,9 @@ form.addEventListener("submit", async (event) => {
   if (!question) return;
   button.disabled = true;
   answerBox.innerHTML = '<p class="note">Searching the catalog</p>';
+  citationList.innerHTML = '<li class="note">None yet.</li>';
   try {
-    const data = await ask(question);
+    const data = await ask(question, text => { answerBox.innerHTML = renderAnswer(text); });
     answerBox.innerHTML = renderAnswer(data.answer);
     renderCitations(data.citations);
     showRemaining(data.remaining);

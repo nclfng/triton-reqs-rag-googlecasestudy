@@ -24,12 +24,20 @@ def read_page(path):
 
 
 def split_by_heading(body):
-    """Return (heading, text) sections, starting a new one at every # heading."""
-    sections, heading, lines = [], "", []
+    """Return (heading, text) sections, starting a new one at every # heading.
+    Small headings (like "Lower-Division Requirements") get the program name in front,
+    e.g. "BS Artificial Intelligence Program / Lower-Division Requirements"."""
+    sections, heading, lines, program = [], "", [], ""
     for line in body.splitlines():
-        if re.match(r"#{1,6} ", line):
+        match = re.match(r"(#{1,6}) (.*)", line)
+        if match:
             sections.append((heading, "\n".join(lines)))
-            heading, lines = line.lstrip("# ").strip(), []
+            name = match.group(2).replace("\\", "").strip(" *_")
+            if len(match.group(1)) <= 3:
+                program, heading = name, name
+            else:
+                heading = f"{program} / {name}" if program else name
+            lines = []
         else:
             lines.append(line)
     sections.append((heading, "\n".join(lines)))

@@ -14,11 +14,13 @@ Example questions:
 2. **Index.** `build_index.py` splits the pages by heading into chunks of about 400 words, embeds them with Gemini, and writes `data/index.json` and `data/vectors.npy`.
 3. **Course table.** `build_courses.py` reads the course description pages and writes `data/courses.json`, a table of every course with its title, units, and prerequisites.
 4. **Answer.** For each question, `app.py`:
-   - asks Gemini which courses the student says they finished and what else to search for;
-   - finds the closest chunks by cosine similarity (numpy, no vector database);
-   - looks up the finished courses and their prerequisites in the course table, so a student who took CSE 12 is also treated as having met CSE 12's prerequisites;
-   - looks up the prerequisites of the courses named in the major's requirements;
-   - sends all of this to Gemini, which answers only from the sources and cites them.
+   - finds the courses the student says they finished (for example, "CSE 12 and 21");
+   - searches the chunks by cosine similarity (numpy, no vector database), including separate searches for the major's lower-division, upper-division, and elective requirements;
+   - treats a finished course's prerequisites as finished too, so CSE 12 implies CSE 8B or CSE 11;
+   - takes the courses named in the major's requirements and checks each one's prerequisites against what the student has finished, marking it Ready or Missing;
+   - sends the sources to Gemini, which writes the answer from them and cites them. The answer streams to the page as it is written.
+
+Prerequisites are checked in code, not by the model. The catalog writes "A or B and C or D" to mean (A or B) and (C or D), and `courses.py` reads it that way.
 
 The page in `static/` is plain HTML, CSS, and JavaScript.
 
@@ -79,5 +81,6 @@ The built data files are committed, so the deployed app does not scrape or embed
 
 - Only the pages in `urls.txt` are indexed. Physics, Chemistry, Cognitive Science, Biology, Admission, and some course description pages are scraped but not yet indexed (see the end of `urls.txt`).
 - The catalog does not say when courses are offered, and the sample four-year plans live on department websites, so recommendations are based on requirements and prerequisites only.
-- Prerequisite text is copied from the catalog as plain text, so complex "and/or" conditions can be misread.
+- Prerequisites are checked automatically only when they list plain course codes. Conditions like test scores or minimum grades are passed to the model as text and flagged for the student to check.
+- The free Gemini tier has a low daily request limit for generation (as low as 20 a day on some models). If the limit is hit, the app shows a message to try again later or paste a personal key.
 - Answers come from a language model and can be wrong. Confirm with an academic advisor.
