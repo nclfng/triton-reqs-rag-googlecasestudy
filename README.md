@@ -83,7 +83,7 @@ The built data files are committed, so the deployed app does not scrape or embed
 
 ## Limitations
 
-- Only the pages in `urls.txt` are indexed. Physics, Chemistry, Cognitive Science, Biology, Admission, and some course description pages are scraped but not yet indexed (see the end of `urls.txt`).
+- Only the pages in `urls.txt` are indexed. The Biology major page and Admission are scraped but not indexed (see the end of `urls.txt`).
 - The catalog does not say when courses are offered, and the sample four-year plans live on department websites, so recommendations are based on requirements and prerequisites only.
 - Prerequisites are checked automatically only when they list plain course codes. Conditions like test scores or minimum grades are passed to the model as text and flagged for the student to check.
 - The free Gemini tier has a low daily request limit for generation (as low as 20 a day on some models). If the limit is hit, the app shows a message to try again later or paste a personal key.

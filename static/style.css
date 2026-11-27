@@ -5,6 +5,7 @@
   --navy: #182B49;
   --gold: #C69214;   /* only for link hover and the active state */
   --rule: #D9D4C7;
+  --panel: #EDE9DE;   /* slightly darker flat tint for the side columns */
   --serif: "Source Serif 4", Georgia, serif;
   --sans: "IBM Plex Sans", Arial, sans-serif;
   --mono: "IBM Plex Mono", Menlo, monospace;
@@ -13,7 +14,8 @@
 * { box-sizing: border-box; }
 body { overflow-wrap: anywhere; border-top: 4px solid var(--navy); margin: 0; background: var(--paper); color: var(--ink); font: 400 1rem/1.6 var(--sans); }
 h1, h2 { font-family: var(--serif); color: var(--navy); font-weight: 600; margin: 0 0 0.5rem; }
-h1 { font-size: clamp(1.4rem, 1rem + 1.2vw, 1.9rem); line-height: 1.2; }
+h1 { overflow-wrap: normal; font-size: clamp(1.4rem, 1rem + 0.9vw, 1.75rem); line-height: 1.15; padding-bottom: 0.9rem; border-bottom: 2px solid var(--navy); margin-bottom: 0.9rem; }
+.eyebrow { font: 400 0.72rem/1.3 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: #55524A; margin: 0 0 0.5rem; }
 /* Section labels: small mono caps, like the headings on a printed handout */
 h2 { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.09em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.6rem; }
 p { margin: 0 0 0.75rem; }
@@ -22,15 +24,18 @@ a:hover { color: var(--gold); }
 
 /* Three regions divided by hairlines */
 .page {
+  --side-w: 260px;   /* changed by dragging the dividers (see app.js) */
+  --right-w: 320px;
+  position: relative;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr) minmax(0, 320px);
+  grid-template-columns: var(--side-w) minmax(0, 1fr) var(--right-w);
   grid-template-areas: "side main right";
   min-height: 100vh;
 }
 .sidebar, .main, .right { padding: 1.5rem; min-width: 0; }
-.sidebar { grid-area: side; border-right: 1px solid var(--rule); }
+.sidebar { grid-area: side; border-right: 1px solid var(--rule); background: var(--panel); }
 .main { grid-area: main; }
-.right { grid-area: right; border-left: 1px solid var(--rule); }
+.right { grid-area: right; border-left: 1px solid var(--rule); background: var(--panel); }
 .main > * { max-width: 70ch; }
 
 /* Sidebar */
@@ -75,17 +80,26 @@ button:disabled { opacity: 0.6; cursor: default; }
 .citations { list-style: none; margin: 0; padding: 0; }
 .citations li { border-top: 1px solid var(--rule); padding: 0.75rem 0; font-size: 0.9rem; }
 .citations li:first-child { border-top: 0; padding-top: 0; }
-.citations .num { font-family: var(--mono); color: var(--navy); font-weight: 500; margin-right: 0.35rem; }
+.citations .num { font: 500 0.75rem var(--mono); color: #fff; background: var(--navy); padding: 0.05rem 0.4rem; margin-right: 0.4rem; border-radius: 2px; }
 .citations a { font-family: var(--mono); font-size: 0.8rem; overflow-wrap: anywhere; display: block; margin: 0.25rem 0; }
 .excerpt { margin: 0; color: #3A3832; overflow-wrap: anywhere; }
 
-footer { border-top: 1px solid var(--rule); padding: 1rem 1.5rem; }
+/* Draggable dividers between the columns */
+.resizer { position: absolute; top: 0; bottom: 0; width: 11px; cursor: col-resize; touch-action: none; z-index: 2; }
+.resizer::after { content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 3px; }
+.resizer:hover::after, .resizer.dragging::after, .resizer:focus-visible::after { background: var(--gold); }
+.resizer:focus-visible { outline: none; }
+#resize-side { left: calc(var(--side-w) - 5px); }
+#resize-right { right: calc(var(--right-w) - 5px); }
+
+footer { background: var(--navy); color: #E9E5DA; padding: 1rem 1.5rem; }
 footer p { margin: 0; overflow-wrap: anywhere; }
 
 /* Right column drops below the main column */
 @media (max-width: 1100px) {
+  #resize-right { display: none; }
   .page {
-    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-columns: var(--side-w) minmax(0, 1fr);
     grid-template-areas: "side main" "side right";
     min-height: 0;
   }
@@ -94,6 +108,7 @@ footer p { margin: 0; overflow-wrap: anywhere; }
 
 /* Everything stacks; the sidebar becomes a collapsible section */
 @media (max-width: 720px) {
+  .resizer { display: none; }
   .page { grid-template-columns: minmax(0, 1fr); grid-template-areas: "side" "main" "right"; }
   .sidebar { border-right: 0; border-bottom: 1px solid var(--rule); }
   summary {

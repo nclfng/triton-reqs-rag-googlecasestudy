@@ -127,6 +127,45 @@ async function loadConfig() {
   }
 }
 
+// Draggable column dividers. A divider can also be moved with the arrow keys; double-click resets it.
+const page = document.getElementById("page");
+
+function makeResizable(handle, variable, fromLeft, min, defaultWidth) {
+  const other = fromLeft ? "--right-w" : "--side-w";
+  function setWidth(width) {
+    const pageWidth = page.getBoundingClientRect().width;
+    const otherWidth = parseInt(getComputedStyle(page).getPropertyValue(other)) || 0;
+    const max = Math.min(520, pageWidth - otherWidth - 360);  // always leave room for the main column
+    const clamped = Math.max(min, Math.min(max, width));
+    page.style.setProperty(variable, clamped + "px");
+    try { localStorage.setItem(variable, clamped); } catch (e) {}
+  }
+  handle.addEventListener("pointerdown", (event) => {
+    handle.setPointerCapture(event.pointerId);
+    handle.classList.add("dragging");
+  });
+  handle.addEventListener("pointermove", (event) => {
+    if (!handle.classList.contains("dragging")) return;
+    const box = page.getBoundingClientRect();
+    setWidth(fromLeft ? event.clientX - box.left : box.right - event.clientX);
+  });
+  handle.addEventListener("pointerup", () => handle.classList.remove("dragging"));
+  handle.addEventListener("dblclick", () => setWidth(defaultWidth));
+  handle.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const now = parseInt(getComputedStyle(page).getPropertyValue(variable));
+    const step = (event.key === "ArrowRight" ? 1 : -1) * (fromLeft ? 1 : -1) * 20;
+    setWidth(now + step);
+  });
+  try {  // restore the width from last visit, if any
+    const saved = localStorage.getItem(variable);
+    if (saved) page.style.setProperty(variable, saved + "px");
+  } catch (e) {}
+}
+makeResizable(document.getElementById("resize-side"), "--side-w", true, 200, 260);
+makeResizable(document.getElementById("resize-right"), "--right-w", false, 240, 320);
+
 // On narrow screens start with the sidebar collapsed.
 if (window.matchMedia("(max-width: 720px)").matches) {
   document.getElementById("sidebar-details").removeAttribute("open");

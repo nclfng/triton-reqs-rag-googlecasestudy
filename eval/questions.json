@@ -34,5 +34,13 @@
   {
     "question": "I took CSE 12 and 21. What should I take next as an AI major?",
     "expected_url_substring": "curric/CSE-ug"
+  },
+  {
+    "question": "What are the requirements for the bioinformatics major?",
+    "expected_url_substring": "curric/BIOI-ug"
+  },
+  {
+    "question": "What are the prerequisites for PHYS 2A?",
+    "expected_url_substring": "courses/PHYS"
   }
 ]
