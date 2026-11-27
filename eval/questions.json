@@ -31,7 +31,9 @@
       "five|\\b5\\b"
     ],
     "accept_url_substrings": [
-      "REV"
+      "REV",
+      "HUM",
+      "revelle-college"
     ]
   },
   {
