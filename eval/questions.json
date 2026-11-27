@@ -1,10 +1,38 @@
 [
-  {"question": "How many upper-division electives do I need for the BS in Artificial Intelligence?", "expected_url_substring": "curric/CSE-ug"},
-  {"question": "What are the Warren College writing requirements?", "expected_url_substring": "earl-warren-college"},
-  {"question": "What is the Revelle College Humanities sequence?", "expected_url_substring": "REV"},
-  {"question": "What are the general education requirements at Sixth College?", "expected_url_substring": "sixth-college"},
-  {"question": "What are the required courses for the bioengineering major?", "expected_url_substring": "curric/BENG-ug"},
-  {"question": "What does CSE 150A cover?", "expected_url_substring": "courses/CSE"},
-  {"question": "How many units do I need to graduate from UCSD?", "expected_url_substring": "graduation-requirements"},
-  {"question": "What math courses does a mechanical engineering major need?", "expected_url_substring": "curric/MAE-ug"}
+  {
+    "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
+    "expected_url_substring": "curric/CSE-ug"
+  },
+  {
+    "question": "What are the Warren College writing requirements?",
+    "expected_url_substring": "earl-warren-college"
+  },
+  {
+    "question": "What is the Revelle College Humanities sequence?",
+    "expected_url_substring": "REV"
+  },
+  {
+    "question": "What are the general education requirements at Sixth College?",
+    "expected_url_substring": "sixth-college"
+  },
+  {
+    "question": "What are the required courses for the bioengineering major?",
+    "expected_url_substring": "curric/BENG-ug"
+  },
+  {
+    "question": "What does CSE 150A cover?",
+    "expected_url_substring": "courses/CSE"
+  },
+  {
+    "question": "How many units do I need to graduate from UCSD?",
+    "expected_url_substring": "graduation-requirements"
+  },
+  {
+    "question": "What math courses does a mechanical engineering major need?",
+    "expected_url_substring": "curric/MAE-ug"
+  },
+  {
+    "question": "I took CSE 12 and 21. What should I take next as an AI major?",
+    "expected_url_substring": "curric/CSE-ug"
+  }
 ]

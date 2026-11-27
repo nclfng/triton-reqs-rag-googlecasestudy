@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from app import make_client, retrieve  # the same retrieval code the app uses
+from app import gather_context, make_client  # the same retrieval code the app uses
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
     hits = 0
     print(f"{'#':<3} {'result':<6} {'rank':<5} question")
     for i, item in enumerate(questions, 1):
-        chunks = retrieve(client, item["question"])
+        chunks, _ = gather_context(client, item["question"])
         urls = [c["url"] for c in chunks]
         ranks = [r for r, u in enumerate(urls, 1) if item["expected_url_substring"] in u]
         hits += bool(ranks)

@@ -1,70 +1,83 @@
 # Triton Requirements Guide
 
-Triton Requirements RAG for Google Finals Case Study.
+A requirements lookup for UC San Diego students. Ask a question about college general education, university graduation requirements, or an engineering major, and get a short answer with numbered citations that link to the catalog page it came from. If the indexed pages do not contain the answer, it says so.
 
-A small question-answering tool for UCSD general college requirements (Warren College) and the BS in Artificial Intelligence. A student asks a question and gets a short answer with numbered citations linking to the catalog page it came from. If the indexed pages do not contain the answer, it says so instead of guessing.
+Example questions:
+
+- How many upper-division electives do I need for the BS in Artificial Intelligence?
+- I took CSE 12 and 21. What should I take next as an AI major?
+- What are the writing requirements at Warren College?
 
 ## How it works
 
-1. `scrape.py` reads `urls.txt` and saves each public catalog page as markdown (via Context.dev) in `data/raw/`. Pages already saved are skipped.
-2. `build_index.py` splits the pages by heading into chunks of about 400 words, embeds each chunk with Gemini, and saves `data/index.json` and `data/vectors.npy`.
-3. `app.py` embeds the question, finds the 8 closest chunks by cosine similarity (plain numpy, no vector database), and asks a Gemini Flash model to answer only from those chunks, citing them as [1], [2].
-4. The page in `static/` is plain HTML, CSS and JS.
+1. **Scrape.** `scrape.py` reads `urls.txt` and saves each public catalog page as markdown (using Context.dev) in `data/raw/`. Pages already saved are skipped.
+2. **Index.** `build_index.py` splits the pages by heading into chunks of about 400 words, embeds them with Gemini, and writes `data/index.json` and `data/vectors.npy`.
+3. **Course table.** `build_courses.py` reads the course description pages and writes `data/courses.json`, a table of every course with its title, units, and prerequisites.
+4. **Answer.** For each question, `app.py`:
+   - asks Gemini which courses the student says they finished and what else to search for;
+   - finds the closest chunks by cosine similarity (numpy, no vector database);
+   - looks up the finished courses and their prerequisites in the course table, so a student who took CSE 12 is also treated as having met CSE 12's prerequisites;
+   - looks up the prerequisites of the courses named in the major's requirements;
+   - sends all of this to Gemini, which answers only from the sources and cites them.
 
-Indexed pages (about 50, listed in `urls.txt`): university-wide degree and graduation requirements, all seven undergraduate colleges and their writing/core sequences, the Jacobs School of Engineering and its majors (BENG, CSE including the BS in Artificial Intelligence, ECE, MAE, NANO, SE), Data Science, Cognitive Science, Math, Physics, Chemistry, Biology, and course descriptions for the engineering and prerequisite departments.
+The page in `static/` is plain HTML, CSS, and JavaScript.
 
 ## Setup
 
 ```
-python3 -m venv .venv && source .venv/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env     # then add GEMINI_API_KEY and CONTEXT_DEV_API_KEY
+cp .env.example .env
 ```
 
-To rebuild the data (optional, the built index is committed):
+Add `GEMINI_API_KEY` and `CONTEXT_DEV_API_KEY` to `.env`. The built index is committed, so you only need the Gemini key to run the app.
+
+To rebuild the data after changing `urls.txt`:
 
 ```
 python scrape.py
 python build_index.py
+python build_courses.py
 ```
 
-The free Gemini tier limits embeddings to about 100 chunks a minute, so `build_index.py` pauses and retries when it hits the limit.
+The free Gemini tier allows 1,000 embedding requests a day and 30,000 tokens a minute. `build_index.py` waits when it hits either limit and saves its progress in `data/embed_cache.json`, so it can be rerun and will continue where it stopped.
 
 ## Run
 
 ```
-uvicorn app:app --reload
+uvicorn app:app --no-access-log
 ```
 
-Open http://localhost:8000. Settings (models, chunk size, top-k, daily limit) are at the top of `app.py`.
+Open http://localhost:8000. Settings (models, chunk size, number of sources, daily limit, answer length, feedback form link) are at the top of `app.py`.
 
-## Usage limits
+## Privacy and limits
 
-- With the server key: 10 questions per IP per day, tracked in memory (resets when the server restarts).
-- With a key pasted in the sidebar: no cap. It is sent in an `X-Gemini-Key` header for that request only and is never logged or stored.
+- Questions and IP addresses are never written to disk. The daily counter is held in memory as a hashed IP and resets when the server restarts. Run uvicorn with `--no-access-log` so IPs do not appear in server logs.
+- With the server key: 10 questions per IP per day.
+- With a key pasted into the sidebar: no cap. It is sent in an `X-Gemini-Key` header for that request only and is not stored or logged.
 - Questions are limited to 400 characters.
 
 ## Evaluation
 
-Fill `eval/questions.json` with `{question, expected_url_substring}` pairs, then run `python eval/run_eval.py`. It reports how often the expected page appears in the top 8 retrieved chunks.
+Put `{question, expected_url_substring}` pairs in `eval/questions.json` and run:
+
+```
+python eval/run_eval.py
+```
+
+It prints whether the expected page was among the sources sent to Gemini for each question, and a pass rate.
 
 ## Deploy
 
-The built `data/index.json` and `data/vectors.npy` are committed, so the deployed app does not scrape or embed anything. No billing account is needed.
+The built data files are committed, so the deployed app does not scrape or embed anything and needs no billing account.
 
-**Hugging Face Spaces:** create a new Space with the Docker SDK, push this repo to it, and add `GEMINI_API_KEY` under Settings, Secrets.
-
-**Render (free tier):** create a Web Service from this repo with the Docker runtime, and add `GEMINI_API_KEY` as an environment variable.
+- **Hugging Face Spaces:** create a Docker Space from this repo and add `GEMINI_API_KEY` as a secret.
+- **Render (free tier):** create a Web Service with the Docker runtime and set `GEMINI_API_KEY` as an environment variable.
 
 ## Limitations
 
-- Only the pages in `urls.txt` are indexed, so non-engineering majors and departments such as Economics or Psychology are not covered, and course descriptions exist only for the listed departments.
-- Answers are capped at 300 words (`ANSWER_MAX_WORDS` in `app.py`), so a very long list of electives may be summarized.
-- Catalog pages change. Re-run the scrape and index to refresh, and always confirm with an academic advisor.
-- The daily limit is per server process and resets on restart. IPs behind a shared proxy may share a count.
-- Retrieval uses fixed-size chunks, so a requirement split across chunks can be missed.
-- Answers come from a language model and can be wrong even with sources.
-
-## To do: deferred pages
-
-Because the free Gemini tier allows only 1,000 embeddings a day, some pages were scraped but not indexed: Physics, Chemistry, Cognitive Science, Biology, Engineering course descriptions and Admission. See the DEFERRED block at the bottom of `urls.txt` for how to add them back.
+- Only the pages in `urls.txt` are indexed. Physics, Chemistry, Cognitive Science, Biology, Admission, and some course description pages are scraped but not yet indexed (see the end of `urls.txt`).
+- The catalog does not say when courses are offered, and the sample four-year plans live on department websites, so recommendations are based on requirements and prerequisites only.
+- Prerequisite text is copied from the catalog as plain text, so complex "and/or" conditions can be misread.
+- Answers come from a language model and can be wrong. Confirm with an academic advisor.

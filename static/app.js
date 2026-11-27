@@ -76,8 +76,18 @@ async function loadSources() {
     `<li>${escapeHtml(p.title)}<span class="date">${escapeHtml(p.scraped)}</span></li>`).join("");
 }
 
+async function loadConfig() {
+  const config = await (await fetch("/api/config")).json();
+  document.getElementById("updated").textContent = config.last_updated;
+  if (config.feedback_url) {
+    document.getElementById("feedback-link").href = config.feedback_url;
+    document.getElementById("feedback").hidden = false;
+  }
+}
+
 // On narrow screens start with the sidebar collapsed.
 if (window.matchMedia("(max-width: 720px)").matches) {
   document.getElementById("sidebar-details").removeAttribute("open");
 }
 loadSources();
+loadConfig();

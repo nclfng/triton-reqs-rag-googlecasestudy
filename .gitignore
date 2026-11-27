@@ -6,3 +6,5 @@ __pycache__/
 .vscode/
 data/embed_cache.json
 build.log
+uv.log
+eval.log
