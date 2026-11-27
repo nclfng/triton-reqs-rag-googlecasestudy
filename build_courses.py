@@ -14,7 +14,9 @@ PREREQ = re.compile(r"\*\*_+Prerequisites:_+\*\*\s*(.*)")
 
 def clean_prereq(text):
     """Keep just the prerequisite sentence (drop 'restricted to undergraduates...' etc.)."""
-    return text.split(". ")[0].rstrip(".").strip()
+    sentence = text.split(". ")[0].rstrip(".").strip()
+    # "restricted to undergraduates" is a restriction, not a prerequisite
+    return "" if sentence.lower().startswith("restricted") else sentence
 
 
 def parse_page(path):

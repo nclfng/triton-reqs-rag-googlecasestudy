@@ -1066,28 +1066,28 @@
  "DSC 191": {
   "title": "Seminar in Data Science",
   "units": "1 or 2",
-  "prereq": "restricted to students with upper-division standing",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/DSC.html",
   "page": "Data Science - Course Descriptions"
  },
  "DSC 197": {
   "title": "Data Science Internship",
   "units": "1\u20134",
-  "prereq": "restricted to students with upper-division standing",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/DSC.html",
   "page": "Data Science - Course Descriptions"
  },
  "DSC 198": {
   "title": "Directed Group Study in Data Science",
   "units": "2 or 4",
-  "prereq": "restricted to students with upper-division standing",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/DSC.html",
   "page": "Data Science - Course Descriptions"
  },
  "DSC 199": {
   "title": "Independent Study for Data Science Undergraduates",
   "units": "2 or 4",
-  "prereq": "restricted to students with upper-division standing",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/DSC.html",
   "page": "Data Science - Course Descriptions"
  },
@@ -4853,7 +4853,7 @@
  "BENG 230A": {
   "title": "Biochemistry",
   "units": "4",
-  "prereq": "restricted to bioengineering graduate students with major code BE75",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/BENG.html",
   "page": "Bioengineering - Course Descriptions"
  },
@@ -6407,14 +6407,14 @@
  "CSE 8A": {
   "title": "Introduction to Programming and Computational Problem-Solving I",
   "units": "4",
-  "prereq": "restricted to undergraduates",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 11": {
   "title": "Introduction to Programming and Computational Problem-Solving: Accelerated Pace",
   "units": "4",
-  "prereq": "restricted to undergraduates",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -6470,7 +6470,7 @@
  "CSE 42": {
   "title": "Building and Programming Electronic Devices",
   "units": "2",
-  "prereq": "restricted to first-year and sophomore students; instructor approval required",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -6953,7 +6953,7 @@
  "CSE 176E": {
   "title": "Robot Systems Design and Implementation",
   "units": "4",
-  "prereq": "restricted to junior and senior students; instructor approval required",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -7275,7 +7275,7 @@
  "CSE 231": {
   "title": "Compiler Construction",
   "units": "4",
-  "prereq": "restricted to students within the CS75, CS76, CS78, CS88, and CS89 majors",
+  "prereq": "",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },

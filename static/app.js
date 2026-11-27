@@ -5,6 +5,12 @@ const answerBox = document.getElementById("answer");
 const citationList = document.getElementById("citations");
 const button = document.getElementById("look-up");
 
+// The answer gets a navy rule on its left only once there is real text in it.
+function showAnswer(html, filled) {
+  answerBox.innerHTML = html;
+  answerBox.classList.toggle("filled", filled);
+}
+
 function escapeHtml(text) {
   const div = document.createElement("div");
   div.textContent = text;
@@ -70,20 +76,30 @@ form.addEventListener("submit", async (event) => {
   const question = questionBox.value.trim();
   if (!question) return;
   button.disabled = true;
-  answerBox.innerHTML = '<p class="note">Searching the catalog</p>';
+  showAnswer('<p class="note">Searching the catalog</p>', false);
   citationList.innerHTML = '<li class="note">None yet.</li>';
   try {
-    const data = await ask(question, text => { answerBox.innerHTML = renderAnswer(text); });
-    answerBox.innerHTML = renderAnswer(data.answer);
+    const data = await ask(question, text => showAnswer(renderAnswer(text), true));
+    showAnswer(renderAnswer(data.answer), true);
     renderCitations(data.citations);
     showRemaining(data.remaining);
     document.getElementById("model").textContent = data.model;
   } catch (error) {
-    answerBox.innerHTML = '<p class="error">' + escapeHtml(error.message) + "</p>";
+    showAnswer('<p class="error">' + escapeHtml(error.message) + "</p>", false);
     if (/used today/.test(error.message)) showRemaining(0);
     if (/own free Gemini key/.test(error.message)) askForOwnKey();
   }
   button.disabled = false;
+});
+
+// Example links fill the question box (the student still presses Look up).
+document.querySelectorAll(".examples a").forEach(link => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    questionBox.value = link.dataset.q;
+    questionBox.dispatchEvent(new Event("input"));
+    questionBox.focus();
+  });
 });
 
 questionBox.addEventListener("input", () => {

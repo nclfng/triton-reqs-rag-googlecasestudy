@@ -38,9 +38,13 @@ RULES = f"""You answer student questions about UCSD requirements using ONLY the 
 - Cite sources like [1], [2], matching the source numbers.
 - Never invent course codes, unit counts, or policies.
 - Course entries in the sources list each course's prerequisites and end with a note: "Ready" means the student has met them, "Missing" names what is still needed, and a note to check the text means it was too complex to check automatically. If the student says they finished a course, its own prerequisites are already counted as finished.
-- If asked what to take next, list required (core) courses before electives, and recommend only courses that appear in the major's requirements in the sources and are marked Ready. Mention important courses that are Missing a prerequisite as later steps, naming what is missing. If a missing prerequisite is itself a Ready course, suggest taking it first. Say which prerequisites you assumed.
+- If asked what to take next: first list the major's required courses that are marked Ready, in a sensible order (programming and math first). Name important required courses that are Missing a prerequisite as later steps, and if the missing prerequisite is itself Ready, suggest taking it first. A student who lists no finished courses (for example a first-year) has finished nothing, so recommend only courses with no unmet prerequisites.
+- Mention electives only briefly (at most three) and only courses from the major's own department or closely related ones (for example COGS or DSC for AI). Never list courses from unrelated departments just because they appear in an elective list.
+- Say which prerequisites you assumed. Keep it short: a few short paragraphs.
 - Do not say when courses are offered. The catalog does not list that; the department website has sample plans.
 - End with one line telling the student to confirm with their advisor."""
+
+PLANNING = re.compile(r"\b(next|take|taking|first[- ]year|freshman|sophomore|junior|senior|recommend\w*|plan|schedule|should i)\b", re.I)
 
 load_dotenv()
 app = FastAPI()
@@ -71,25 +75,37 @@ def retrieve(client, queries):
     return [CHUNKS[i] for i in picked[:MAX_CONTEXT_CHUNKS]]
 
 
+def required_codes(chunks):
+    """Course codes from requirement items, skipping "choose from this list" and elective items."""
+    found = []
+    for chunk in chunks:
+        for item in re.split(r"\s(?=\d+\.\s+\*\*)", chunk["text"]):  # numbered items: "1. **_Math:_** ..."
+            if not re.search(r"chosen from|choose|select|elective", item, re.I):
+                found += find_codes(item)
+    return list(dict.fromkeys(found))
+
+
 def gather_context(client, question):
     """Return (sources for the answer, courses the student says they took)."""
     taken = courses_taken(question)
+    planning = bool(taken) or bool(PLANNING.search(question))  # "what should I take" style questions
     queries = [question]
-    if taken:  # "what next" questions need each part of the major's requirements, so search them separately
+    if planning:  # search each part of the major's requirements separately
         queries += [f"{part}: {question}" for part in
                     ("lower-division requirements", "upper-division core courses", "electives")]
     chunks = retrieve(client, queries)
+    if not planning:
+        return chunks, taken
     # Candidates: courses named in the best-matching program's requirements (lower-division first).
     program_chunks = [c for c in chunks if "/curric/" in c["url"] and c.get("heading")]
     if program_chunks:
         program = program_chunks[0]["heading"].split(" / ")[0]
         program_chunks = sorted((c for c in program_chunks if c["heading"].startswith(program)),
                                 key=lambda c: c["heading"])
-    named = find_codes(" ".join(c["text"] for c in program_chunks))
+    named = required_codes(program_chunks)  # required courses only; electives stay in the text sources
     done, groups = implied_by(taken)
     candidates = [c for c in named if c not in done][:80]
-    items = as_context_items(list(done) + candidates, done, groups)
-    return chunks + items, taken
+    return chunks + as_context_items(list(done) + candidates, done, groups), taken
 
 
 def build_prompt(question, sources, taken):
