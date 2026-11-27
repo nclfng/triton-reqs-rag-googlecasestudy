@@ -56,7 +56,8 @@ Open http://localhost:8000. Settings (models, chunk size, number of sources, dai
 ## Privacy and limits
 
 - Questions and IP addresses are never written to disk. The daily counter is held in memory as a hashed IP and resets when the server restarts. Run uvicorn with `--no-access-log` so IPs do not appear in server logs.
-- With the server key: 10 questions per IP per day.
+- Finished answers are cached in memory (up to 200, keyed by a hash of the question) so repeat questions are instant and use no Gemini quota. The cache is never written to disk and clears on restart.
+- With the server key: 10 questions per IP per day. Cached answers do not count.
 - With a key pasted into the sidebar: no cap. It is sent in an `X-Gemini-Key` header for that request only and is not stored or logged.
 - Questions are limited to 400 characters.
 

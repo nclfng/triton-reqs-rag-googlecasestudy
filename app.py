@@ -3,6 +3,7 @@ import hashlib
 import json
 import os
 import re
+from collections import OrderedDict
 from datetime import date
 from pathlib import Path
 
@@ -26,6 +27,7 @@ TOP_K = 8                             # chunks kept for the question itself
 MAX_CONTEXT_CHUNKS = 12               # most chunks sent to Gemini
 DAILY_LIMIT = 10                      # questions per IP per day on the server key
 MAX_QUESTION_CHARS = 400
+CACHE_SIZE = 200                      # answers kept in memory for repeat questions
 ANSWER_MAX_WORDS = 300                # raised from 150 so elective lists fit
 FEEDBACK_FORM_URL = ""                # paste your Google Form link here to show the feedback link
 # --------------------------------------------------
@@ -42,6 +44,7 @@ RULES = f"""You answer student questions about UCSD requirements using ONLY the 
 
 load_dotenv()
 app = FastAPI()
+answer_cache = OrderedDict()  # hash of question -> finished answer. Memory only, never written to disk.
 usage = {}  # (hashed IP, date) -> questions asked on the server key. Memory only, never written to disk.
 
 CHUNKS = json.loads(Path("data/index.json").read_text())
@@ -96,7 +99,7 @@ def build_prompt(question, sources, taken):
 
 
 ANSWER_CONFIG = types.GenerateContentConfig(
-    temperature=0.2, thinking_config=types.ThinkingConfig(thinking_level="LOW"))
+    temperature=0.2, thinking_config=types.ThinkingConfig(thinking_level="MINIMAL"))
 
 
 def cited_sources(answer, sources):
@@ -138,13 +141,28 @@ def check_request(body, request, user_key):
     return question, key
 
 
-def finish(answer, sources, key, user_key):
-    """Count the question (server key only) and build the response body."""
+def cache_key(question):
+    """Same question (ignoring case and spacing) gives the same key. Only the hash is kept."""
+    return hashlib.sha256(" ".join(question.lower().split()).encode()).hexdigest()
+
+
+def cached_reply(question, key, user_key):
+    """Return a saved answer for this question, or None. Cached answers cost no Gemini quota."""
+    reply = answer_cache.get(cache_key(question))
+    if reply:
+        remaining = None if user_key else DAILY_LIMIT - usage.get(key, 0)
+        return {**reply, "remaining": remaining}
+
+
+def finish(question, answer, sources, key, user_key):
+    """Count the question (server key only), save the answer in the cache, build the response body."""
     if not user_key:
         usage[key] = usage.get(key, 0) + 1
-    remaining = None if user_key else DAILY_LIMIT - usage[key]
-    return {"answer": answer, "citations": cited_sources(answer, sources),
-            "model": GENERATE_MODEL, "remaining": remaining}
+    reply = {"answer": answer, "citations": cited_sources(answer, sources), "model": GENERATE_MODEL}
+    answer_cache[cache_key(question)] = reply
+    if len(answer_cache) > CACHE_SIZE:
+        answer_cache.popitem(last=False)  # drop the oldest
+    return {**reply, "remaining": None if user_key else DAILY_LIMIT - usage[key]}
 
 
 class Question(BaseModel):
@@ -166,6 +184,8 @@ def config():
 def ask(body: Question, request: Request, x_gemini_key: str | None = Header(default=None)):
     """Plain JSON answer (used by tests and scripts)."""
     question, key = check_request(body, request, x_gemini_key)
+    if reply := cached_reply(question, key, x_gemini_key):
+        return reply
     try:
         client = make_client(x_gemini_key)
         found, taken = gather_context(client, question)
@@ -173,13 +193,16 @@ def ask(body: Question, request: Request, x_gemini_key: str | None = Header(defa
             model=GENERATE_MODEL, contents=build_prompt(question, found, taken), config=ANSWER_CONFIG)
     except errors.APIError as error:
         raise HTTPException(429 if error.code == 429 else 502, explain(error))
-    return finish(response.text, found, key, x_gemini_key)
+    return finish(question, response.text, found, key, x_gemini_key)
 
 
 @app.post("/api/ask-stream")
 def ask_stream(body: Question, request: Request, x_gemini_key: str | None = Header(default=None)):
     """Same as /api/ask, but sends the answer as it is written (one JSON object per line)."""
     question, key = check_request(body, request, x_gemini_key)
+    if reply := cached_reply(question, key, x_gemini_key):
+        text = json.dumps({"delta": reply["answer"]}) + "\n" + json.dumps({"done": reply}) + "\n"
+        return StreamingResponse(iter([text]), media_type="application/x-ndjson")
     try:
         client = make_client(x_gemini_key)
         found, taken = gather_context(client, question)
@@ -196,7 +219,7 @@ def ask_stream(body: Question, request: Request, x_gemini_key: str | None = Head
         except errors.APIError as error:
             yield json.dumps({"error": explain(error)}) + "\n"
             return
-        yield json.dumps({"done": finish(answer, found, key, x_gemini_key)}) + "\n"
+        yield json.dumps({"done": finish(question, answer, found, key, x_gemini_key)}) + "\n"
 
     return StreamingResponse(events(), media_type="application/x-ndjson")
 
