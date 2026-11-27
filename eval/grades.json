@@ -1,0 +1,144 @@
+{
+ "rubric": {
+  "2": "Correct and complete",
+  "1": "Partial or missing a piece",
+  "0": "Wrong, or says 'not covered' when the catalog pages do cover it"
+ },
+ "graded_by": "Scored by hand against the catalog pages. Spot-check them: the grades live in this file.",
+ "notebooklm": [
+  {
+   "score": 0,
+   "note": "Says the elective breakdown is not detailed, but the AI program page states 44 elective units.",
+   "citation": null,
+   "failure": "not_covered"
+  },
+  {
+   "score": 1,
+   "note": "Correct (two-course writing sequence, two ethics courses) but gives no course codes.",
+   "citation": null,
+   "failure": "incomplete"
+  },
+  {
+   "score": 1,
+   "note": "Correct (5-course humanities sequence) but no HUM 1-5 detail or prerequisites.",
+   "citation": null,
+   "failure": "incomplete"
+  },
+  {
+   "score": 2,
+   "note": "Covers CAT, IT fluency, modes of inquiry, exploring data, art making, practicum.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 0,
+   "note": "Says the bioengineering page is missing from its sources.",
+   "citation": false,
+   "failure": "not_covered"
+  },
+  {
+   "score": 0,
+   "note": "Says the course description is not in its sources.",
+   "citation": false,
+   "failure": "not_covered"
+  },
+  {
+   "score": 2,
+   "note": "180 units, 60 upper-division.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 1,
+   "note": "Gives generic engineering math and says the mechanical engineering page is missing; no MATH 20E.",
+   "citation": false,
+   "failure": "incomplete"
+  },
+  {
+   "score": 1,
+   "note": "Right courses but a flat list: CSE 30 and 55 are listed as next with no sense of which are blocked by prerequisites.",
+   "citation": null,
+   "failure": "incomplete"
+  },
+  {
+   "score": 1,
+   "note": "Lower-division only; no upper-division requirements or bioinformatics series.",
+   "citation": null,
+   "failure": "incomplete"
+  },
+  {
+   "score": 1,
+   "note": "MATH 20A is one valid option but the catalog lists several.",
+   "citation": null,
+   "failure": "incomplete"
+  }
+ ],
+ "ours": [
+  {
+   "score": 1,
+   "note": "Totals right (64 = 20 core + 44 elective) but the 44 is broken into 12 AI + 28 CSE and the 4-unit ethics item is wrongly placed in the core.",
+   "citation": null,
+   "failure": "incomplete"
+  },
+  {
+   "score": 2,
+   "note": "WCWP 10A-B, WARR 11A-B, PHIL/POLI 27-28, transfer path.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "HUM 1-5 with units and ordering.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "All six areas plus experiential learning and CAT 125.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "Year-by-year required list from the bioengineering page.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "Description and topics from the course page.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "180 units, 60 upper-division.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "MATH 18, 20A-E from the mechanical engineering page.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "Counts CSE 8B/11 and CSE 20 as done, separates Ready courses from blocked ones. Weak spot: electives are vague.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "Lower- and upper-division requirements and the bioinformatics series. Not every unit count was checked by hand.",
+   "citation": null,
+   "failure": "none"
+  },
+  {
+   "score": 2,
+   "note": "Full prerequisite line from the course page. Weak spot: extra ECE citations add noise.",
+   "citation": null,
+   "failure": "none"
+  }
+ ]
+}

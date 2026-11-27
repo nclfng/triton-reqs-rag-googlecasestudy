@@ -10103,7 +10103,7 @@
  "BENG 230B": {
   "title": "Cell and Molecular Biology",
   "units": "4",
-  "prereq": "BENG 230A; restricted to bioengineering graduate students with major code BE75",
+  "prereq": "BENG 230A",
   "url": "https://catalog.ucsd.edu/courses/BENG.html",
   "page": "Bioengineering - Course Descriptions"
  },
@@ -11664,14 +11664,14 @@
  "CSE 12": {
   "title": "Basic Data Structures and Object-Oriented Design",
   "units": "4",
-  "prereq": "CSE 8B or CSE 11; restricted to undergraduates",
+  "prereq": "CSE 8B or CSE 11",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 15L": {
   "title": "Software Tools and Techniques Laboratory",
   "units": "2",
-  "prereq": "CSE 8B or CSE 11 or CSE 12 or DSC 30; restricted to undergraduates",
+  "prereq": "CSE 8B or CSE 11 or CSE 12 or DSC 30",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11685,7 +11685,7 @@
  "CSE 21": {
   "title": "Mathematics for Algorithms and Systems",
   "units": "4",
-  "prereq": "CSE 20 or MATH 15A or MATH 31CH; students who have completed MATH 154 or MATH 184 or MATH 188 previously or concurrently may not receive credit for CSE 21; restricted to undergraduates",
+  "prereq": "CSE 20 or MATH 15A or MATH 31CH",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11706,21 +11706,21 @@
  "CSE 30": {
   "title": "Computer Organization",
   "units": "4",
-  "prereq": "CSE 15L or CSE 29 or ECE 15; restricted to undergraduates",
+  "prereq": "CSE 15L or CSE 29 or ECE 15",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 42": {
   "title": "Building and Programming Electronic Devices",
   "units": "2",
-  "prereq": "",
+  "prereq": "instructor approval required",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 55": {
   "title": "Foundations of Artificial Intelligence and Machine Learning",
   "units": "4",
-  "prereq": "CSE 12 and CSE 25 and CSE 15L or CSE 29 and MATH 18 or MATH 31AH and MATH 20C or MATH 31BH; restricted to students within the CS29 major",
+  "prereq": "CSE 12 and CSE 25 and CSE 15L or CSE 29 and MATH 18 or MATH 31AH and MATH 20C or MATH 31BH",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11783,7 +11783,7 @@
  "CSE 100": {
   "title": "Advanced Data Structures",
   "units": "4",
-  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 12 and CSE 15L or CSE 29 or ECE 15; restricted to undergraduates",
+  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 12 and CSE 15L or CSE 29 or ECE 15",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11797,21 +11797,21 @@
  "CSE 101": {
   "title": "Design and Analysis of Algorithms",
   "units": "4",
-  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 12 or DSC 30; restricted to undergraduates",
+  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 12 or DSC 30",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 103": {
   "title": "A Practical Introduction to Probability and Statistics",
   "units": "4",
-  "prereq": "MATH 20B and CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188; restricted to CS25, CS26, CS27, CS28, and CS29 majors",
+  "prereq": "MATH 20B and CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 105": {
   "title": "Theory of Computability",
   "units": "4",
-  "prereq": "CSE 12 and CSE 20 or MATH 109 or MATH 15A or MATH 31CH and CSE 21 or MATH 100A or MATH 103A or MATH 154 or MATH 158 or MATH 184 or MATH 188; restricted to CS25, CS26, CS27, CS29, EC26, and MA30 majors",
+  "prereq": "CSE 12 and CSE 20 or MATH 109 or MATH 15A or MATH 31CH and CSE 21 or MATH 100A or MATH 103A or MATH 154 or MATH 158 or MATH 184 or MATH 188",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11825,7 +11825,7 @@
  "CSE 107": {
   "title": "Introduction to Modern Cryptography",
   "units": "4",
-  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 101 and CSE 105; restricted to students within the CS25, CS26, CS27, CS28, CS29, and EC26 majors",
+  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 101 and CSE 105",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11839,14 +11839,14 @@
  "CSE 110": {
   "title": "Software Engineering",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 112": {
   "title": "Advanced Software Engineering",
   "units": "4",
-  "prereq": "CSE 110; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 110",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11860,7 +11860,7 @@
  "CSE 120": {
   "title": "Operating Systems Principles",
   "units": "4",
-  "prereq": "CSE 15L or CSE 29 and CSE 30 and CSE 100 or CSE 100R and CSE 101; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 15L or CSE 29 and CSE 30 and CSE 100 or CSE 100R and CSE 101",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11881,14 +11881,14 @@
  "CSE 123": {
   "title": "Computer Networks",
   "units": "4",
-  "prereq": "CSE 15L or CSE 29 and CSE 101 and CSE 110; restricted to students within the CS25, CS26, EC26, CS27, CS28, and CS29 majors",
+  "prereq": "CSE 15L or CSE 29 and CSE 101 and CSE 110",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 124": {
   "title": "Networked Services",
   "units": "4",
-  "prereq": "CSE 15L or CSE 29 and CSE 101 and CSE 110; restricted to students within the CS25, CS26, CS27, CS28, CS29, and EC26 majors",
+  "prereq": "CSE 15L or CSE 29 and CSE 101 and CSE 110",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11902,56 +11902,56 @@
  "CSE 127": {
   "title": "Introduction to Computer Security",
   "units": "4",
-  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 120 or CSE 123 or CSE 124 or ECE 158A or ECE 158B; restricted to students within the CS25, CS26, CS27, CS28, CS29, and EC26 majors",
+  "prereq": "CSE 21 or MATH 154 or MATH 158 or MATH 184 or MATH 188 and CSE 120 or CSE 123 or CSE 124 or ECE 158A or ECE 158B",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 130": {
   "title": "Programming Languages: Principles and Paradigms",
   "units": "4",
-  "prereq": "CSE 12 and CSE 100 or CSE 100R and CSE 105; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 12 and CSE 100 or CSE 100R and CSE 105",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 131": {
   "title": "Compiler Construction",
   "units": "4",
-  "prereq": "CSE 30 and CSE 100 or CSE 100R and CSE 105 and CSE 130; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 30 and CSE 100 or CSE 100R and CSE 105 and CSE 130",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 132A": {
   "title": "Database System Principles",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to students within the CS25, CS26, EC26, CS27, CS28, and CS29 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 132B": {
   "title": "Database Systems Applications",
   "units": "4",
-  "prereq": "CSE 132A; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 132A",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 132C": {
   "title": "Database System Implementation",
   "units": "4",
-  "prereq": "CSE 132A or DSC 102; restricted to CS25, CS26, CS27, CS28, CS29, and EC26 majors",
+  "prereq": "CSE 132A or DSC 102",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 134B": {
   "title": "Web Client Languages",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 135": {
   "title": "Online Database Analytics Applications",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to students within the CS25, CS26, CS27, CS28, CS29, and EC26 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -11965,28 +11965,28 @@
  "CSE 140": {
   "title": "Components and Design Techniques for Digital Systems",
   "units": "4",
-  "prereq": "CSE 30 or ECE 30; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 30 or ECE 30",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 140L": {
   "title": "Digital Systems Laboratory",
   "units": "2",
-  "prereq": "CSE 30; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 30",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 141": {
   "title": "Introduction to Computer Architecture",
   "units": "4",
-  "prereq": "CSE 30 or ECE 30 and CSE 140; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 30 or ECE 30 and CSE 140",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 141L": {
   "title": "Project in Computer Architecture",
   "units": "2",
-  "prereq": "CSE 30 or ECE 30 and CSE 140; restricted to CS25, CS26, CS27, CS28, CS29, and EC26 majors",
+  "prereq": "CSE 30 or ECE 30 and CSE 140",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -12035,98 +12035,98 @@
  "CSE 150A": {
   "title": "Introduction to Artificial Intelligence: Probabilistic Reasoning and Decision-Making",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 and MATH 20A and MATH 18 or MATH 31AH; restricted to students within the CS25, CS26, CS27, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 and MATH 20A and MATH 18 or MATH 31AH",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 150B": {
   "title": "Introduction to Artificial Intelligence: Search and Reasoning",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 and CSE 100 or CSE 100R; restricted to students within the CS25, CS26, CS27, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 and CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 151A": {
   "title": "Machine Learning: Learning Algorithms",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 and MATH 18 or MATH 31AH and MATH 20C or MATH 31BH; restricted to students within the CS25, CS26, CS27, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 and MATH 18 or MATH 31AH and MATH 20C or MATH 31BH",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 151B": {
   "title": "Deep Learning",
   "units": "4",
-  "prereq": "_ MATH 20C or MATH 31BH and BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 or SE 125 and COGS 118A or COGS 118B or COGS 188 or CSE 151A or DSC 140B or ECE 175A; restricted to students within the CS25, CS26, CS27, CS28, CS29, EC26, and DS25 majors",
+  "prereq": "_ MATH 20C or MATH 31BH and BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186 or SE 125 and COGS 118A or COGS 118B or COGS 188 or CSE 151A or DSC 140B or ECE 175A",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 152A": {
   "title": "Introduction to Computer Vision I",
   "units": "4",
-  "prereq": "MATH 18 or MATH 31AH and CSE 12 or DSC 30 and CSE 15L or CSE 29 or DSC 80; Python programming experience recommended; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "MATH 18 or MATH 31AH and CSE 12 or DSC 30 and CSE 15L or CSE 29 or DSC 80; Python programming experience recommended",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 152B": {
   "title": "Introduction to Computer Vision II",
   "units": "4",
-  "prereq": "CSE 152A or CSE 152 or CSE 166; Python programming experience recommended; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 152A or CSE 152 or CSE 166; Python programming experience recommended",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 153": {
   "title": "Machine Learning for Music",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186; restricted to students within the CS25, CS26, CS27, CS28, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 153R": {
   "title": "Machine Learning for Music",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186; restricted to students within the CS25, CS26, CS27, CS28, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 156": {
   "title": "Statistical Natural Language Processing",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186; restricted to students within the CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 158": {
   "title": "Recommender Systems and Web Mining",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186; restricted to students within the CS25, CS26, CS27, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 158R": {
   "title": "Recommender Systems and Web Mining",
   "units": "4",
-  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186; restricted to students within the CS25, CS26, CS27, CS28, CS29, EC26, and DS25 majors",
+  "prereq": "CSE 12 or DSC 40B and CSE 15L or CSE 29 or DSC 80 and BENG 100 or BENG 134 or COGS 118D or CSE 103 or ECE 109 or ECON 120A or MAE 108 or MATH 180A or MATH 180B or MATH 181A or MATH 183 or MATH 186",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 160": {
   "title": "Introduction to Parallel Computing",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 163": {
   "title": "Advanced Computer Graphics",
   "units": "4",
-  "prereq": "CSE 167 or CSE 167R or MATH 155A; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 167 or CSE 167R or MATH 155A",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 165": {
   "title": "3-D User Interaction",
   "units": "4",
-  "prereq": "CSE 167 or CSE 167R or MATH 155A; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 167 or CSE 167R or MATH 155A",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -12140,35 +12140,35 @@
  "CSE 167": {
   "title": "Computer Graphics",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 167R": {
   "title": "Computer Graphics",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 168": {
   "title": "Computer Graphics II: Rendering",
   "units": "4",
-  "prereq": "CSE 167 or CSE 167R or MATH 155A; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 167 or CSE 167R or MATH 155A",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 168R": {
   "title": "Computer Graphics II: Rendering",
   "units": "4",
-  "prereq": "CSE 167 or CSE 167R or MATH 155A; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 167 or CSE 167R or MATH 155A",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 169": {
   "title": "Computer Animation",
   "units": "4",
-  "prereq": "CSE 167 or CSE 167R; restricted to CS25, CS26, CS27, CS29, and EC26 majors",
+  "prereq": "CSE 167 or CSE 167R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -12196,7 +12196,7 @@
  "CSE 176E": {
   "title": "Robot Systems Design and Implementation",
   "units": "4",
-  "prereq": "",
+  "prereq": "instructor approval required",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
@@ -12217,21 +12217,21 @@
  "CSE 181": {
   "title": "Molecular Sequence Analysis",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R\u00a0and CSE 101 and BIMM 100 or CHEM 114C; restricted to BE28, BI34, CH37, and CS27 majors",
+  "prereq": "CSE 100 or CSE 100R\u00a0and CSE 101 and BIMM 100 or CHEM 114C",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 181R": {
   "title": "Molecular Sequence Analysis",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R and CSE 101 and BIMM 100 or CHEM 114C; restricted to BE28, BI34, CH37, and CS27 majors",
+  "prereq": "CSE 100 or CSE 100R and CSE 101 and BIMM 100 or CHEM 114C",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },
  "CSE 182": {
   "title": "Biological Databases",
   "units": "4",
-  "prereq": "CSE 100 or CSE 100R; restricted to BE28, BI34, CH37, and CS27 majors",
+  "prereq": "CSE 100 or CSE 100R",
   "url": "https://catalog.ucsd.edu/courses/CSE.html",
   "page": "Computer Science and Engineering - Course Descriptions"
  },

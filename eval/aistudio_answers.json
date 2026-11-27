@@ -1,0 +1,161 @@
+{
+ "README": "Fill 'answer' with what AI Studio returned, then 'score' (0-2) and 'citation' (true/false) using the rubric in grades.json. 'bare' = the question typed into AI Studio with no sources. 'pasted' = the files in eval/ai_studio pasted in (this tests the model, not the data).",
+ "bare": [
+  {
+   "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the Warren College writing requirements?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What is the Revelle College Humanities sequence?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the general education requirements at Sixth College?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the required courses for the bioengineering major?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What does CSE 150A cover?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "How many units do I need to graduate from UCSD?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What math courses does a mechanical engineering major need?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "I took CSE 12 and 21. What should I take next as an AI major?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the requirements for the bioinformatics major?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the prerequisites for PHYS 2A?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  }
+ ],
+ "pasted": [
+  {
+   "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the Warren College writing requirements?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What is the Revelle College Humanities sequence?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the general education requirements at Sixth College?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the required courses for the bioengineering major?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What does CSE 150A cover?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "How many units do I need to graduate from UCSD?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What math courses does a mechanical engineering major need?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "I took CSE 12 and 21. What should I take next as an AI major?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the requirements for the bioinformatics major?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  },
+  {
+   "question": "What are the prerequisites for PHYS 2A?",
+   "answer": null,
+   "score": null,
+   "citation": null,
+   "note": ""
+  }
+ ]
+}

@@ -7,7 +7,8 @@ COURSES = json.loads((Path(__file__).parent / "data/courses.json").read_text())
 CODE = re.compile(r"\b([A-Za-z]{2,4})\s?(\d{1,3}[A-Za-z]{0,2})\b")
 # "CSE 12 and 21, 100": a code followed by more bare numbers that reuse its department
 CODE_LIST = re.compile(r"\b([A-Za-z]{2,4})\s?(\d{1,3}[A-Za-z]{0,2})((?:\s*(?:,|and|&)\s*\d{1,3}[A-Za-z]{0,2}\b)*)", re.I)
-CLEAN_CODE = re.compile(r"[A-Z]{2,4} \d{1,3}[A-Z]{0,2}")
+CLEAN_CODE = re.compile(r"[A-Z]{2,4} \d{1,3}[A-Z]{0,2}(?:-[A-Z])?")  # "MATH 10A-B" is a two-course sequence
+BARE_NUMBER = re.compile(r"\d{1,3}[A-Z]{0,2}(?:-[A-Z])?")
 
 
 def find_codes(text):
@@ -36,11 +37,17 @@ def prereq_groups(code):
     """Read 'A or B and C' the way the catalog means it: (A or B) AND C.
     Returns a list of groups, each a list of alternatives. None if the text is too complex."""
     text = COURSES[code]["prereq"].split(";")[0].strip()
-    groups = []
+    groups, dept = [], ""
     for part in re.split(r"\s+and\s+", text) if text else []:
-        alternatives = [a.strip(" ()") for a in re.split(r"\s+or\s+|,\s*", part)]
-        if not all(CLEAN_CODE.fullmatch(a) for a in alternatives):
-            return None
+        alternatives = []
+        for a in re.split(r"\s+or\s+|,\s*", part):
+            a = a.strip(" ()")
+            if BARE_NUMBER.fullmatch(a) and dept:  # "MATH 20A or 20B": 20B reuses MATH
+                a = f"{dept} {a}"
+            if not CLEAN_CODE.fullmatch(a):
+                return None
+            dept = a.split()[0]
+            alternatives.append(a)
         groups.append(alternatives)
     return groups
 
@@ -73,9 +80,23 @@ def readiness(code, done, groups):
     return "Ready: all prerequisites met" if not missing else "Missing: " + "; ".join(missing)
 
 
+def prereq_sentence(code):
+    """Prerequisites in words, so 'any one of' and 'all of' cannot be misread."""
+    raw = COURSES[code]["prereq"]
+    groups = prereq_groups(code) if ";" not in raw else None
+    if not raw:
+        return "none listed"
+    if groups is None:
+        return raw  # too complex to restate safely, keep the catalog's own wording
+    parts = [g[0] if len(g) == 1 else "any one of " + ", ".join(g) for g in groups]
+    if len(parts) == 1:
+        return parts[0]
+    return "all of these are required: " + "; ".join(f"({n}) {p}" for n, p in enumerate(parts, 1))
+
+
 def describe(code, status=""):
     course = COURSES[code]
-    line = f"{code}. {course['title']} ({course['units']} units). Prerequisites: {course['prereq'] or 'none listed'}"
+    line = f"{code}. {course['title']} ({course['units']} units). Prerequisites: {prereq_sentence(code)}"
     return f"{line}. {status}" if status else line
 
 

@@ -1,0 +1,46 @@
+[
+ {
+  "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
+  "answer": "The **BS in Artificial Intelligence** requires **124 total units** for major requirements, with **60 units** dedicated to lower-division coursework. The specific upper-division elective unit breakdown is not fully detailed in the provided catalog excerpt."
+ },
+ {
+  "question": "What are the Warren College writing requirements?",
+  "answer": "**Earl Warren College** requires a **two-quarter writing sequence** (**WRITING\u20142**) through the Warren College Writing Program, which focuses on written argumentation based on primary and secondary sources. Students must also complete **two courses in Ethics and Society**."
+ },
+ {
+  "question": "What is the Revelle College Humanities sequence?",
+  "answer": "**Revelle College** requires a **5-course core Humanities sequence** (**HUMANITIES\u20145**), which includes intensive instruction in university-level writing."
+ },
+ {
+  "question": "What are the general education requirements at Sixth College?",
+  "answer": "Sixth College GE requirements: Culture, Art, and Technology (CAT): 4 courses (a 3-quarter lower-division core writing sequence plus CAT 125 upper-division writing). Information Technology Fluency: 1 computing course. Modes of Inquiry: 7 courses (2 Social Sciences, 2 Humanities, 2 Natural Sciences, 1 Math/Logic). Exploring Data: 1 statistical methods course. Art Making: 2 courses. Practicum: 1 capstone project course."
+ },
+ {
+  "question": "What are the required courses for the bioengineering major?",
+  "answer": "Your sources note that **Bioengineering** is part of the Jacobs School of Engineering and detail general lower-division engineering preparation (including **MATH 18, MATH 20A\u2013D, PHYS 2A\u2013C**, and **10 units of General Chemistry with lab**). However, the specific Bioengineering department catalog page (`curric/BENG-ug`) is missing from your uploaded sources."
+ },
+ {
+  "question": "What does CSE 150A cover?",
+  "answer": "**CSE 150A** is listed in your sources as an upper-division core option for Data Science majors (paired with DSC 140A). However, the individual course description detailing what the course covers is not included in the provided catalog excerpts."
+ },
+ {
+  "question": "How many units do I need to graduate from UCSD?",
+  "answer": "A minimum of **180 cumulative units** is required to graduate from UC San Diego, with at least **60 units at the upper-division level**."
+ },
+ {
+  "question": "What math courses does a mechanical engineering major need?",
+  "answer": "Lower-division math preparation required for engineering majors across the Jacobs School includes **Linear Algebra (MATH 18), Calculus I (MATH 20A), Calculus II (MATH 20B), Calculus and Analytic Geometry (MATH 20C)**, and **Differential Equations (MATH 20D)**. The dedicated Mechanical Engineering catalog page (`curric/MAE-ug`) is not in your uploaded sources."
+ },
+ {
+  "question": "I took CSE 12 and 21. What should I take next as an AI major?",
+  "answer": "For a **BS in Artificial Intelligence**, lower-division CSE requirements include CSE 8B/11, CSE 12, CSE 15L or 29, CSE 20, CSE 21, and CSE 30, along with AI-specific courses **CSE 25** and **CSE 55**. Having completed CSE 12 and CSE 21, your remaining lower-division CSE/AI requirements to take next are **CSE 30, CSE 15L or CSE 29, CSE 25**, and **CSE 55**."
+ },
+ {
+  "question": "What are the requirements for the bioinformatics major?",
+  "answer": "The **BS Computer Science with Specialization in Bioinformatics** requires **128 total major units**. Lower-division requirements (62\u201364 units) include: CSE: CSE 8B/11, CSE 12, CSE 15L or 29, CSE 21, CSE 30 (18\u201320 units), plus 2 units of lower-division CSE electives. Mathematics: MATH 20A, MATH 20B, MATH 20C (or MATH 31BH), and MATH 18 (or MATH 31AH) (16 units). Chemistry: CHEM 6A\u2013B (8 units) and Organic Chemistry CHEM 40A or 41A (4 units). Biology: BILD 1, BILD 3, and BILD 4 (10 units). Physics: PHYS 2A (4 units)."
+ },
+ {
+  "question": "What are the prerequisites for PHYS 2A?",
+  "answer": "**MATH 20A** is the prerequisite for **PHYS 2A**."
+ }
+]

@@ -32,17 +32,23 @@ ANSWER_MAX_WORDS = 300                # raised from 150 so elective lists fit
 FEEDBACK_FORM_URL = ""                # paste your Google Form link here to show the feedback link
 # --------------------------------------------------
 
-RULES = f"""You answer student questions about UCSD requirements using ONLY the numbered sources below.
+RULES = f"""You answer student questions about UCSD requirements using ONLY the numbered sources in the message.
 - If the sources do not contain the answer, say the catalog pages indexed here do not cover it and suggest checking with an academic advisor.
 - Keep the answer under {ANSWER_MAX_WORDS} words, in plain language. Plain text only: no markdown, no asterisks, no bullet symbols.
-- Cite sources like [1], [2], matching the source numbers.
-- Never invent course codes, unit counts, or policies.
-- Course entries in the sources list each course's prerequisites and end with a note: "Ready" means the student has met them, "Missing" names what is still needed, and a note to check the text means it was too complex to check automatically. If the student says they finished a course, its own prerequisites are already counted as finished.
-- If asked what to take next: first list the major's required courses that are marked Ready, in a sensible order (programming and math first). Name important required courses that are Missing a prerequisite as later steps, and if the missing prerequisite is itself Ready, suggest taking it first. A student who lists no finished courses (for example a first-year) has finished nothing, so recommend only courses with no unmet prerequisites.
-- Mention electives only briefly (at most three) and only courses from the major's own department or closely related ones (for example COGS or DSC for AI). Never list courses from unrelated departments just because they appear in an elective list.
-- Say which prerequisites you assumed. Keep it short: a few short paragraphs.
+- Cite sources like [1], [2], matching the source numbers. Cite only the source that states the fact, and put the citation after that fact.
+- Never invent course codes, unit counts, or policies. Copy numbers exactly as the source states them.
+- Totals: when a source gives a total with its parts, state the total and then each part with its units, including small parts such as a 4-unit ethics requirement.
+- Prerequisites: the sources say "any one of" when a student needs just one course from a list, and "all of these are required" when every item is needed. Report them the same way and never turn an "any one of" list into a plain list. Do not mention enrollment restrictions (such as which majors may enroll) unless the student asks about them.
+- If asked what to take next: first list the major's required courses marked Ready, in a sensible order (programming and math first). Name required courses that are Missing a prerequisite only as later steps, and if the missing prerequisite is itself Ready, say to take that first. Never present a Missing course as one to take now. A student who lists no finished courses (for example a first-year) has finished nothing, so recommend only courses with no unmet prerequisites.
+- Mention electives only briefly (at most three) and only courses from the major's own department or closely related ones (for example COGS or DSC for AI). Never list courses from unrelated departments just because they appear in an elective list, and never suggest introductory courses below the level of what the student already finished.
 - Do not say when courses are offered. The catalog does not list that; the department website has sample plans.
-- End with one line telling the student to confirm with their advisor."""
+- Keep it short: a few short paragraphs, then end with one line telling the student to confirm with their advisor."""
+
+FINISHED = re.compile(r"\b(took|taken|finished|completed|passed|already|have done|done with)\b", re.I)
+# Only added to the message when the sources contain readiness notes (planning questions).
+# Kept out of RULES: with these lines in the system instruction the model refused simple
+# questions, because it looked for notes that were not there.
+READINESS_NOTES = """Notes on the course entries: each ends with a readiness note. "Ready" means the student has met the prerequisites, "Missing" names what is still needed, and a note to check the text means it was too complex to check automatically. A line starting "Because of prerequisites" lists courses the student has also finished. If the student names finished courses, open the answer with one sentence saying what those imply, for example: "Since you finished CSE 12 and CSE 21, I counted CSE 8B or CSE 11 and CSE 20 or MATH 15A as done." Do not write generic assumption sentences such as "we assume none"."""
 
 PLANNING = re.compile(r"\b(next|take|taking|first[- ]year|freshman|sophomore|junior|senior|recommend\w*|plan|schedule|should i)\b", re.I)
 
@@ -81,13 +87,14 @@ def required_codes(chunks):
     for chunk in chunks:
         for item in re.split(r"\s(?=\d+\.\s+\*\*)", chunk["text"]):  # numbered items: "1. **_Math:_** ..."
             if not re.search(r"chosen from|choose|select|elective", item, re.I):
-                found += find_codes(item)
+                found += find_codes(re.sub(r"\(\s*or [^)]*\)", "", item))  # skip "(or MATH 15A ...)" substitutes
     return list(dict.fromkeys(found))
 
 
 def gather_context(client, question):
     """Return (sources for the answer, courses the student says they took)."""
-    taken = courses_taken(question)
+    # Only courses the student says they finished count as done ("I took CSE 12"), not every course named
+    taken = courses_taken(question) if FINISHED.search(question) else []
     planning = bool(taken) or bool(PLANNING.search(question))  # "what should I take" style questions
     queries = [question]
     if planning:  # search each part of the major's requirements separately
@@ -95,7 +102,9 @@ def gather_context(client, question):
                     ("lower-division requirements", "upper-division core courses", "electives")]
     chunks = retrieve(client, queries)
     if not planning:
-        return chunks, taken
+        # A question about named courses ("prerequisites for PHYS 2A") is answered from the course
+        # table first, so the answer cites the course page and not an unrelated program page.
+        return as_context_items(find_codes(question)) + chunks, taken
     # Candidates: courses named in the best-matching program's requirements (lower-division first).
     program_chunks = [c for c in chunks if "/curric/" in c["url"] and c.get("heading")]
     if program_chunks:
@@ -108,15 +117,33 @@ def gather_context(client, question):
     return chunks + as_context_items(list(done) + candidates, done, groups), taken
 
 
-def build_prompt(question, sources, taken):
+def build_message(question, sources, taken):
+    """The user message: numbered sources, what the student finished, and the question.
+    The rules go in the model's system instruction (see answer_config)."""
     numbered = "\n\n".join(f"[{i}] {s['title']} - {s['heading']}\n{s['text']}" if s.get("heading")
                             else f"[{i}] {s['title']}\n{s['text']}" for i, s in enumerate(sources, 1))
-    done = f"\nThe student says they finished: {', '.join(taken)}." if taken else ""
-    return f"{RULES}\n\nSources:\n{numbered}\n{done}\nQuestion: {question}"
+    finished = ""
+    if taken:
+        done, groups = implied_by(taken)
+        also = sorted(done - set(taken))
+        finished = f"\nThe student says they finished: {', '.join(taken)}."
+        if also or groups:
+            options = "; ".join("one of " + " or ".join(sorted(g)) for g in groups if len(g) > 1)
+            finished += " Because of prerequisites, they have also finished: " + "; ".join(
+                part for part in (", ".join(also), options) if part) + "."
+    notes = f"\n{READINESS_NOTES}\n" if re.search(r"\b(Ready|Missing)\b[: ]", numbered) else ""
+    return f"Sources:\n{numbered}\n{notes}{finished}\nQuestion: {question}"
 
 
-ANSWER_CONFIG = types.GenerateContentConfig(
-    temperature=0.2, thinking_config=types.ThinkingConfig(thinking_level="MINIMAL"))
+COUNTING = re.compile(r"\bhow many\b|\btotal\b|\bunits\b", re.I)
+
+
+def answer_config(question):
+    """Fast answers by default. Questions that add up units get a little more thinking, because
+    the fastest setting tends to drop one part of a total (for example the 4-unit ethics item)."""
+    level = "MEDIUM" if COUNTING.search(question) else "MINIMAL"
+    return types.GenerateContentConfig(system_instruction=RULES, temperature=0.2,
+                                       thinking_config=types.ThinkingConfig(thinking_level=level))
 
 
 def cited_sources(answer, sources):
@@ -164,11 +191,11 @@ def check_request(body, request, user_key):
     return question, key
 
 
-def stream_text(client, prompt, used):
+def stream_text(client, prompt, used, config):
     """Yield the answer text. If a model is out of free quota, switch to the next one."""
     for model in GENERATE_MODELS:
         try:
-            for part in client.models.generate_content_stream(model=model, contents=prompt, config=ANSWER_CONFIG):
+            for part in client.models.generate_content_stream(model=model, contents=prompt, config=config):
                 used["model"] = model
                 yield part.text or ""
             return
@@ -226,7 +253,7 @@ def ask(body: Question, request: Request, x_gemini_key: str | None = Header(defa
         client = make_client(x_gemini_key)
         found, taken = gather_context(client, question)
         used = {}
-        answer = "".join(stream_text(client, build_prompt(question, found, taken), used))
+        answer = "".join(stream_text(client, build_message(question, found, taken), used, answer_config(question)))
     except errors.APIError as error:
         raise HTTPException(429 if error.code == 429 else 502, explain(error, x_gemini_key))
     return finish(question, answer, found, key, x_gemini_key, used.get("model", GENERATE_MODELS[0]))
@@ -248,7 +275,7 @@ def ask_stream(body: Question, request: Request, x_gemini_key: str | None = Head
     def events():
         answer, used = "", {}
         try:
-            for text in stream_text(client, build_prompt(question, found, taken), used):
+            for text in stream_text(client, build_message(question, found, taken), used, answer_config(question)):
                 answer += text
                 yield json.dumps({"delta": text}) + "\n"
         except errors.APIError as error:

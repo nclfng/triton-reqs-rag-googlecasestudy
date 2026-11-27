@@ -1,46 +1,132 @@
 [
   {
     "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
-    "expected_url_substring": "curric/CSE-ug"
+    "expected_url_substring": "curric/CSE-ug",
+    "must_include": [
+      "\\b44\\b|forty-four",
+      "\\b12\\b|twelve",
+      "\\b28\\b|twenty-eight",
+      "[Ee]thics"
+    ],
+    "accept_url_substrings": [
+      "curric/CSE-ug"
+    ]
   },
   {
     "question": "What are the Warren College writing requirements?",
-    "expected_url_substring": "earl-warren-college"
+    "expected_url_substring": "earl-warren-college",
+    "must_include": [
+      "WCWP 10",
+      "PHIL 27|POLI 27|ethics"
+    ],
+    "accept_url_substrings": [
+      "earl-warren-college"
+    ]
   },
   {
     "question": "What is the Revelle College Humanities sequence?",
-    "expected_url_substring": "REV"
+    "expected_url_substring": "REV",
+    "must_include": [
+      "HUM 1",
+      "five|\\b5\\b"
+    ],
+    "accept_url_substrings": [
+      "REV"
+    ]
   },
   {
     "question": "What are the general education requirements at Sixth College?",
-    "expected_url_substring": "sixth-college"
+    "expected_url_substring": "sixth-college",
+    "must_include": [
+      "Culture, Art,? and Technology|CAT",
+      "[Ee]xploring [Dd]ata",
+      "[Aa]rt [Mm]aking"
+    ],
+    "accept_url_substrings": [
+      "sixth-college"
+    ]
   },
   {
     "question": "What are the required courses for the bioengineering major?",
-    "expected_url_substring": "curric/BENG-ug"
+    "expected_url_substring": "curric/BENG-ug",
+    "must_include": [
+      "BENG 110",
+      "BENG 187A",
+      "MAE 107"
+    ],
+    "accept_url_substrings": [
+      "curric/BENG-ug"
+    ]
   },
   {
     "question": "What does CSE 150A cover?",
-    "expected_url_substring": "courses/CSE"
+    "expected_url_substring": "courses/CSE",
+    "must_include": [
+      "[Bb]ayesian",
+      "[Mm]arkov"
+    ],
+    "accept_url_substrings": [
+      "courses/CSE"
+    ]
   },
   {
     "question": "How many units do I need to graduate from UCSD?",
-    "expected_url_substring": "graduation-requirements"
+    "expected_url_substring": "graduation-requirements",
+    "must_include": [
+      "\\b180\\b",
+      "\\b60\\b|sixty"
+    ],
+    "accept_url_substrings": [
+      "graduation-requirements"
+    ]
   },
   {
     "question": "What math courses does a mechanical engineering major need?",
-    "expected_url_substring": "curric/MAE-ug"
+    "expected_url_substring": "curric/MAE-ug",
+    "must_include": [
+      "20D",
+      "20E",
+      "MATH 18"
+    ],
+    "accept_url_substrings": [
+      "curric/MAE-ug"
+    ]
   },
   {
     "question": "I took CSE 12 and 21. What should I take next as an AI major?",
-    "expected_url_substring": "curric/CSE-ug"
+    "expected_url_substring": "curric/CSE-ug",
+    "must_include": [
+      "CSE 25",
+      "15L",
+      "CSE 8B|CSE 11"
+    ],
+    "accept_url_substrings": [
+      "curric/CSE-ug"
+    ]
   },
   {
     "question": "What are the requirements for the bioinformatics major?",
-    "expected_url_substring": "curric/BIOI-ug"
+    "expected_url_substring": "curric/BIOI-ug",
+    "must_include": [
+      "\\b128\\b",
+      "BIMM 100",
+      "CSE 181|BIMM 181"
+    ],
+    "accept_url_substrings": [
+      "curric/BIOI-ug",
+      "curric/CSE-ug"
+    ]
   },
   {
     "question": "What are the prerequisites for PHYS 2A?",
-    "expected_url_substring": "courses/PHYS"
+    "expected_url_substring": "courses/PHYS",
+    "must_include": [
+      "10A",
+      "20A",
+      "31BH"
+    ],
+    "accept_url_substrings": [
+      "courses/PHYS"
+    ]
   }
 ]

@@ -72,6 +72,10 @@ python eval/run_eval.py
 
 It prints whether the expected page was among the sources sent to Gemini for each question, and a pass rate.
 
+To check the answers themselves, `python eval/generate_answers.py` writes `eval/our_answers.json`, and `eval/compare.ipynb` (extra packages in `eval/requirements.txt`) scores them against another tool's answers (`eval/notebooklm_answers.json`) using the `must_include` facts in `eval/questions.json`.
+
+To try a question in Google AI Studio, run `python eval/make_ai_studio_prompts.py`. Paste `eval/ai_studio/system_instructions.txt` into the system instructions box and one of the numbered files into the chat. They are exactly what the app sends to the model.
+
 ## Deploy
 
 The live version runs on Vercel (`vercel.json` is included). Set `GEMINI_API_KEY` as an environment variable in the project settings. On Vercel the in-memory daily counter and answer cache are per server instance, so the per-IP limit is approximate.
