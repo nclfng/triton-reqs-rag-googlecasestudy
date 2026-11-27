@@ -81,6 +81,7 @@ form.addEventListener("submit", async (event) => {
   } catch (error) {
     answerBox.innerHTML = '<p class="error">' + escapeHtml(error.message) + "</p>";
     if (/used today/.test(error.message)) showRemaining(0);
+    if (/own free Gemini key/.test(error.message)) askForOwnKey();
   }
   button.disabled = false;
 });
@@ -88,6 +89,12 @@ form.addEventListener("submit", async (event) => {
 questionBox.addEventListener("input", () => {
   document.getElementById("count").textContent = questionBox.value.length + " / 400";
 });
+
+// Out of free quota: open the sidebar (collapsed on phones) and point at the key field.
+function askForOwnKey() {
+  document.getElementById("sidebar-details").setAttribute("open", "");
+  document.getElementById("own-key").focus();
+}
 
 async function loadSources() {
   const pages = await (await fetch("/api/sources")).json();

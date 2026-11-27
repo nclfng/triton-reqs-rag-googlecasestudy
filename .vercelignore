@@ -1,0 +1,10 @@
+.venv
+.env
+.git
+data/raw
+data/raw_deferred
+data/embed_cache.json
+eval
+*.log
+Dockerfile
+render.yaml

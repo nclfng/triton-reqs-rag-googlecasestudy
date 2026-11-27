@@ -58,6 +58,7 @@ Open http://localhost:8000. Settings (models, chunk size, number of sources, dai
 - Questions and IP addresses are never written to disk. The daily counter is held in memory as a hashed IP and resets when the server restarts. Run uvicorn with `--no-access-log` so IPs do not appear in server logs.
 - Finished answers are cached in memory (up to 200, keyed by a hash of the question) so repeat questions are instant and use no Gemini quota. The cache is never written to disk and clears on restart.
 - With the server key: 10 questions per IP per day. Cached answers do not count.
+- When the owner's free Gemini quota runs out for the day, the page says so and asks the student to try tomorrow or paste their own free key.
 - With a key pasted into the sidebar: no cap. It is sent in an `X-Gemini-Key` header for that request only and is not stored or logged.
 - Questions are limited to 400 characters.
 
@@ -72,6 +73,8 @@ python eval/run_eval.py
 It prints whether the expected page was among the sources sent to Gemini for each question, and a pass rate.
 
 ## Deploy
+
+The live version runs on Vercel (`vercel.json` is included). Set `GEMINI_API_KEY` as an environment variable in the project settings. On Vercel the in-memory daily counter and answer cache are per server instance, so the per-IP limit is approximate.
 
 The built data files are committed, so the deployed app does not scrape or embed anything and needs no billing account.
 

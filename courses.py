@@ -3,7 +3,7 @@ import json
 import re
 from pathlib import Path
 
-COURSES = json.loads(Path("data/courses.json").read_text())
+COURSES = json.loads((Path(__file__).parent / "data/courses.json").read_text())
 CODE = re.compile(r"\b([A-Za-z]{2,4})\s?(\d{1,3}[A-Za-z]{0,2})\b")
 # "CSE 12 and 21, 100": a code followed by more bare numbers that reuse its department
 CODE_LIST = re.compile(r"\b([A-Za-z]{2,4})\s?(\d{1,3}[A-Za-z]{0,2})((?:\s*(?:,|and|&)\s*\d{1,3}[A-Za-z]{0,2}\b)*)", re.I)

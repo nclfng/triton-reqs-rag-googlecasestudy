@@ -20,7 +20,7 @@ from courses import as_context_items, courses_taken, find_codes, implied_by
 
 # ---------- Config: change settings here ----------
 EMBED_MODEL = "gemini-embedding-001"
-GENERATE_MODEL = "gemini-3.5-flash-lite"  # one constant; flash-lite is faster and the free tier is stricter on full flash
+GENERATE_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]  # tried in order; the next one is used if a model is out of free quota
 CHUNK_WORDS = 400                     # target words per chunk
 CHUNK_OVERLAP = 40                    # words repeated between neighbouring chunks
 TOP_K = 8                             # chunks kept for the question itself
@@ -47,8 +47,9 @@ app = FastAPI()
 answer_cache = OrderedDict()  # hash of question -> finished answer. Memory only, never written to disk.
 usage = {}  # (hashed IP, date) -> questions asked on the server key. Memory only, never written to disk.
 
-CHUNKS = json.loads(Path("data/index.json").read_text())
-VECTORS = np.load("data/vectors.npy")
+BASE = Path(__file__).parent  # file paths work no matter where the server starts
+CHUNKS = json.loads((BASE / "data/index.json").read_text())
+VECTORS = np.load(BASE / "data/vectors.npy")
 
 
 def make_client(user_key=None):
@@ -120,10 +121,16 @@ def counter_key(request):
     return hashlib.sha256(ip.encode()).hexdigest()[:16], today
 
 
-def explain(error):
+def explain(error, user_key=None):
     """Turn a Gemini error into a short readable message."""
     if isinstance(error, errors.ClientError) and error.code == 429:
-        return "Gemini is busy or its rate limit was hit. Please wait a minute and try again."
+        if "per day" in str(error).lower():  # the daily free quota, not a short rate limit
+            if user_key:
+                return "Your Gemini key has used up its free quota for today. Try again tomorrow."
+            return ("The project owner's free Gemini quota has run out for today. This tool runs on "
+                    "Google's free API tier, which has a small daily limit. Please try again tomorrow, "
+                    "or paste your own free Gemini key in the sidebar to keep going.")
+        return "Gemini is busy right now. Please wait a minute and try again."
     if isinstance(error, errors.ClientError) and error.code in (400, 401, 403):
         return "Gemini rejected the request. If you pasted your own key, check that it is correct."
     return "Gemini is unavailable right now. Please try again."
@@ -141,6 +148,19 @@ def check_request(body, request, user_key):
     return question, key
 
 
+def stream_text(client, prompt, used):
+    """Yield the answer text. If a model is out of free quota, switch to the next one."""
+    for model in GENERATE_MODELS:
+        try:
+            for part in client.models.generate_content_stream(model=model, contents=prompt, config=ANSWER_CONFIG):
+                used["model"] = model
+                yield part.text or ""
+            return
+        except errors.ClientError as error:
+            if error.code != 429 or model == GENERATE_MODELS[-1]:
+                raise
+
+
 def cache_key(question):
     """Same question (ignoring case and spacing) gives the same key. Only the hash is kept."""
     return hashlib.sha256(" ".join(question.lower().split()).encode()).hexdigest()
@@ -154,11 +174,11 @@ def cached_reply(question, key, user_key):
         return {**reply, "remaining": remaining}
 
 
-def finish(question, answer, sources, key, user_key):
+def finish(question, answer, sources, key, user_key, model):
     """Count the question (server key only), save the answer in the cache, build the response body."""
     if not user_key:
         usage[key] = usage.get(key, 0) + 1
-    reply = {"answer": answer, "citations": cited_sources(answer, sources), "model": GENERATE_MODEL}
+    reply = {"answer": answer, "citations": cited_sources(answer, sources), "model": model}
     answer_cache[cache_key(question)] = reply
     if len(answer_cache) > CACHE_SIZE:
         answer_cache.popitem(last=False)  # drop the oldest
@@ -189,11 +209,11 @@ def ask(body: Question, request: Request, x_gemini_key: str | None = Header(defa
     try:
         client = make_client(x_gemini_key)
         found, taken = gather_context(client, question)
-        response = client.models.generate_content(
-            model=GENERATE_MODEL, contents=build_prompt(question, found, taken), config=ANSWER_CONFIG)
+        used = {}
+        answer = "".join(stream_text(client, build_prompt(question, found, taken), used))
     except errors.APIError as error:
-        raise HTTPException(429 if error.code == 429 else 502, explain(error))
-    return finish(question, response.text, found, key, x_gemini_key)
+        raise HTTPException(429 if error.code == 429 else 502, explain(error, x_gemini_key))
+    return finish(question, answer, found, key, x_gemini_key, used.get("model", GENERATE_MODELS[0]))
 
 
 @app.post("/api/ask-stream")
@@ -207,19 +227,18 @@ def ask_stream(body: Question, request: Request, x_gemini_key: str | None = Head
         client = make_client(x_gemini_key)
         found, taken = gather_context(client, question)
     except errors.APIError as error:
-        raise HTTPException(429 if error.code == 429 else 502, explain(error))
+        raise HTTPException(429 if error.code == 429 else 502, explain(error, x_gemini_key))
 
     def events():
-        answer = ""
+        answer, used = "", {}
         try:
-            for part in client.models.generate_content_stream(
-                    model=GENERATE_MODEL, contents=build_prompt(question, found, taken), config=ANSWER_CONFIG):
-                answer += part.text or ""
-                yield json.dumps({"delta": part.text or ""}) + "\n"
+            for text in stream_text(client, build_prompt(question, found, taken), used):
+                answer += text
+                yield json.dumps({"delta": text}) + "\n"
         except errors.APIError as error:
-            yield json.dumps({"error": explain(error)}) + "\n"
+            yield json.dumps({"error": explain(error, x_gemini_key)}) + "\n"
             return
-        yield json.dumps({"done": finish(question, answer, found, key, x_gemini_key)}) + "\n"
+        yield json.dumps({"done": finish(question, answer, found, key, x_gemini_key, used.get("model", GENERATE_MODELS[0]))}) + "\n"
 
     return StreamingResponse(events(), media_type="application/x-ndjson")
 
@@ -231,7 +250,7 @@ def readable_errors(request, error):
 
 @app.get("/")
 def home():
-    return FileResponse("static/index.html")
+    return FileResponse(BASE / "static/index.html")
 
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")

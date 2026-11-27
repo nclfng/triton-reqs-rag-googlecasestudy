@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "app.py": {
+      "includeFiles": "{static/**,data/index.json,data/vectors.npy,data/courses.json}",
+      "maxDuration": 60
+    }
+  }
+}

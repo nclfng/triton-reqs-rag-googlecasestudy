@@ -8,3 +8,6 @@ data/embed_cache.json
 build.log
 uv.log
 eval.log
+.vercel
+.env*
+.vercel
