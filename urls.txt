@@ -56,13 +56,11 @@ https://catalog.ucsd.edu/courses/DSGN.html
 https://catalog.ucsd.edu/courses/MATS.html
 https://catalog.ucsd.edu/courses/CSE-AESE.html
 
-# DEFERRED: scraped but not indexed yet (free Gemini embedding limit is 1000/day).
-# To add later: move the matching file from data/raw_deferred/ back to data/raw/, uncomment, run build_index.py.
-# https://catalog.ucsd.edu/undergraduate/admission/index.html
+https://catalog.ucsd.edu/undergraduate/admission/index.html
 https://catalog.ucsd.edu/curric/COGS-ug.html
 https://catalog.ucsd.edu/curric/PHYS-ug.html
 https://catalog.ucsd.edu/curric/CHEM-ug.html
-# https://catalog.ucsd.edu/curric/BIOL-ug.html
+https://catalog.ucsd.edu/curric/BIOL-ug.html
 https://catalog.ucsd.edu/courses/ENG.html
 https://catalog.ucsd.edu/courses/COGS.html
 https://catalog.ucsd.edu/courses/PHYS.html

@@ -1,16 +1,16 @@
 [
  {
   "question": "How many upper-division electives do I need for the BS in Artificial Intelligence?",
-  "answer": "Students pursuing the BS in Artificial Intelligence must complete sixty-four upper-division units [1]. These units consist of twenty units of core courses and forty-four units of elective courses [1]. \n\nThe forty-four units of elective courses are divided into twelve units of AI electives and twenty-eight units of CSE electives [1]. The twenty units of core courses include a four-unit ethics requirement [1].\n\nPlease confirm with your academic advisor.",
+  "answer": "For the BS in Artificial Intelligence, students must complete sixty-four upper-division units [1]. This total includes twenty units of core courses and forty-four units of elective courses [1]. \n\nThe elective courses are further divided into the following parts: four units for the ethics requirement, which can be CSE 194, PHIL 174, or POLI 121D [1]; twelve units of AI electives [1]; and twenty-eight units of CSE electives [1].\n\nPlease check with your academic advisor to confirm your requirements.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/curric/CSE-ug.html"
   ],
-  "seconds": 4.0
+  "seconds": 3.9
  },
  {
   "question": "What are the Warren College writing requirements?",
-  "answer": "First-year students entering Warren College must complete the UC Entry Level Writing Requirement, followed by a two-course sequence in Warren Writing (WCWP 10A-B) for a letter grade [1, 2]. Alternatively, first-year students who meet honors society requirements and are invited to participate may enroll in WARR 11A-B to fulfill the Warren College writing requirement [3]. Following the writing sequence, first-year students must take two ethics and society courses for a letter grade: PHIL 27 or POLI 27, and PHIL 28 or POLI 28 [2, 5]. PHIL 27 or POLI 27 must be taken before PHIL 28 or POLI 28 [5].\n\nTransfer students who have completed their lower-division general education requirements and/or a transfer agreement take Academic Writing (WCWP 100) plus one upper-division course outside their major discipline, while all other transfer students must complete WCWP 100 and two programs of concentration or area studies [4].\n\nPlease confirm these details with your academic advisor.",
+  "answer": "For first-year students entering Warren College, the writing requirement follows completion of the UC Entry Level Writing Requirement and consists of a two-course sequence in Warren Writing for a letter grade (WCWP 10A-B) [1], [2]. Alternatively, first-year students who meet the Warren College Honors Society requirements and are invited to participate may enroll in WARR 11A-B to fulfill this requirement [3]. \n\nFollowing the writing program, first-year students must take two core courses in ethics and society for a letter grade, which are PHIL 27 or POLI 27, and PHIL 28 or POLI 28 [2], [5]. PHIL 27 or POLI 27 must be taken before PHIL 28 or POLI 28 [5].\n\nTransfer students who have completed their lower-division general education requirements and/or a transfer agreement take Academic Writing (WCWP 100) plus one upper-division course outside of their major discipline [4]. All other transfer students must complete WCWP 100 and two programs of concentration or area studies if they are majoring in engineering [4].\n\nPlease confirm these details with your academic advisor.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/curric/WARR.html",
@@ -23,49 +23,47 @@
  },
  {
   "question": "What is the Revelle College Humanities sequence?",
-  "answer": "The Revelle College humanities requirement is satisfied by completing a five-quarter interdisciplinary sequence of courses in history, literature, and philosophy, known as HUM 1 through HUM 5 [1], [2], [5]. \n\nThe sequence totals five courses: two six-unit courses (HUM 1 and HUM 2) that include intensive instruction in university-level writing, and three four-unit courses (HUM 3, HUM 4, and HUM 5) with less intensive writing instruction [1], [5]. \n\nStudents must have satisfied the UC Entry Level Writing requirement before registering for any part of the humanities sequence [1]. Additionally, HUM 1 and HUM 2 must be taken before HUM 3, HUM 4, and HUM 5 [1]. \n\nPlease confirm these details with your academic advisor.",
+  "answer": "The Revelle College humanities requirement is satisfied by completing a five-quarter interdisciplinary sequence of courses in history, literature, and philosophy, known as HUM 1 through HUM 5 [1, 2]. \n\nThe sequence consists of five courses total: two six-unit courses with intensive instruction in university-level writing (HUM 1 and HUM 2) and three four-unit courses with less intensive writing instruction (HUM 3, HUM 4, and HUM 5) [1, 5]. \n\nPlease check with your academic advisor to confirm these details [1].",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/curric/HUM.html",
    "https://catalog.ucsd.edu/undergraduate/colleges/revelle-college/index.html",
    "https://catalog.ucsd.edu/undergraduate/colleges/revelle-college/index.html"
   ],
-  "seconds": 1.1
+  "seconds": 1.0
  },
  {
   "question": "What are the general education requirements at Sixth College?",
-  "answer": "To graduate from Sixth College, students must satisfy the general-education requirements [3], which include the experiential learning requirement and the upper-division writing requirement [3]. The total general-education requirements consist of several specific areas:\n\nCulture, Art, and Technology: Three courses, which is the core sequence CAT 1, 2, and 3, including two six-unit quarters of intensive instruction in university-level writing [1].\nInformation Technology Fluency: One course, which may be satisfied with courses from a variety of departments [1].\nModes of Inquiry: Seven courses total, consisting of two courses in social sciences, two courses in humanities, two courses in natural sciences, and one course in math/logic, with options available for science and nonscience majors [1], [7].\nExploring Data: One course in statistical methods, with options available for science and nonscience majors [1].\nArt Making: Two courses in literature, music, theatre and dance, or visual arts [1], [6].\nExperiential Learning: Upper-division students must complete a four-unit experiential learning course [1].\nUpper-Division Writing: Students must take a four-unit upper-division writing course, which is CAT 125 or the remote version CAT 125R [1].\n\nPlease confirm these details with your academic advisor.",
+  "answer": "To graduate from Sixth College, students must satisfy the general education requirements across several areas [3]. \n\nThe requirements include Culture, Art, and Technology, which is a core sequence of three courses, CAT 1, CAT 2, and CAT 3, including two six-unit quarters of intensive instruction in university-level writing [1]. \n\nStudents need one course in Information Technology Fluency, which may be satisfied with courses from a variety of departments [1]. \n\nThere is a Modes of Inquiry requirement consisting of seven total courses: two courses in social sciences, two courses in humanities, two courses in natural sciences, and one course in math/logic, with options available for science and nonscience majors [1]. \n\nFor Exploring Data, students need one course in statistical methods, with options available for science and nonscience majors [1]. \n\nThe Art Making requirement is two courses in literature, music, theatre and dance, or visual arts [1]. \n\nUpper-division students must complete a four-unit experiential learning course [1]. \n\nFinally, students must take a four-unit upper-division writing course, which is CAT 125 or the remote version CAT 125R, to study public rhetoric and practical communication [1]. \n\nPlease confirm all requirements with your academic advisor.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/undergraduate/colleges/sixth-college/index.html",
-   "https://catalog.ucsd.edu/undergraduate/colleges/sixth-college/index.html",
-   "https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html",
-   "https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html"
+   "https://catalog.ucsd.edu/undergraduate/colleges/sixth-college/index.html"
   ],
   "seconds": 1.4
  },
  {
   "question": "What are the required courses for the bioengineering major?",
-  "answer": "The required courses for the bioengineering (BS) major are structured across four years [1]. \n\nFirst year: MATH 20A, MATH 20B, MATH 20C, CHEM 6A, CHEM 6B, BILD 1, PHYS 2A, PHYS 2B/2BL, and BENG 1 [1]. \n\nSophomore year: MATH 18, MATH 20D, MATH 20E, CHEM 7L, MAE 40, MAE 3, PHYS 2C/2CL, BENG 140A, BENG 100, MAE 8, and BENG 140B [1]. \n\nJunior year: BENG 110, BENG 112A, BENG 112B, BENG 152, BENG 186B, BENG 172, BENG 103B, MAE 107, BENG 130, and BENG 187A [1]. \n\nSenior year: BENG 187B, BENG 187C, BENG 125, BENG 188A, BENG 188B, BENG 186A, BENG 187D, MAE 150, BENG 122A, and technical electives (TE) selected from a departmental approved list [1]. The curriculum also includes humanities and social science (HSS) courses [1, 5]. \n\nPlease confirm these requirements with your academic advisor.",
+  "answer": "The required courses for the bioengineering (BS) major are organized by year in the curriculum. \n\nFor the first year, the required courses are MATH 20A, MATH 20B, and MATH 20C [1]. Also required are CHEM 6A and CHEM 6B [1]. Additional requirements include BILD 1, PHYS 2A, and PHYS 2B/2BL [1]. Students also take BENG 1 and HSS courses [1]. \n\nFor the sophomore year, the required courses are MATH 18, MATH 20D, and MATH 20E [1]. Other required courses are CHEM 7L, MAE 40, MAE 3, PHYS 2C/2CL, BENG 140A, BENG 100, MAE 8, and BENG 140B, along with HSS courses [1]. \n\nFor the junior year, the required courses are BENG 110, BENG 112A, BENG 112B, BENG 152, BENG 186B, BENG 172, BENG 103B, MAE 107, BENG 130, and BENG 187A, along with HSS courses [1]. \n\nFor the senior year, the required courses are BENG 187B, BENG 187C, BENG 125, BENG 188A, BENG 188B, BENG 186A, BENG 187D, MAE 150, BENG 122A, technical electives selected from a departmental approved list, and HSS courses [1]. \n\nTo graduate, students must maintain an overall GPA of at least 2.0, obtain at least a C- grade in each course required for the major, and take all required courses for a letter grade [5]. Technical electives require departmental approval prior to taking the course [5]. \n\nPlease confirm these requirements with your academic advisor [1].",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/curric/BENG-ug.html",
    "https://catalog.ucsd.edu/curric/BENG-ug.html"
   ],
-  "seconds": 1.5
+  "seconds": 1.6
  },
  {
   "question": "What does CSE 150A cover?",
-  "answer": "CSE 150A covers probabilistic models at the heart of modern artificial intelligence [6]. Specific topics include probabilistic methods for reasoning and decision-making under uncertainty, inference and learning in Bayesian networks, prediction and planning in Markov decision processes, and applications to intelligent systems, speech and natural language processing, information retrieval, and robotics [6].\n\nPlease confirm these details with your academic advisor.",
+  "answer": "CSE 150A covers probabilistic models at the heart of modern artificial intelligence, specifically covering probabilistic methods for reasoning and decision-making under uncertainty, inference and learning in Bayesian networks, prediction and planning in Markov decision processes, and applications to intelligent systems, speech and natural language processing, information retrieval, and robotics [1].\n\nPlease confirm these details with your academic advisor.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/courses/CSE.html"
   ],
-  "seconds": 1.2
+  "seconds": 1.1
  },
  {
   "question": "How many units do I need to graduate from UCSD?",
-  "answer": "To graduate with a bachelor's degree from UCSD, each college must set a minimum requirement equivalent to a total of at least 180 units [1]. This total includes its parts, specifically not less than 60 units at the upper-division level [1]. Specific colleges such as Revelle, Warren, Seventh, and Thurgood Marshall all require a minimum of 180 total units, with at least 60 units of those taken at the upper-division level [2], [5], [6], [7], [8].\n\nPlease confirm your specific college requirements with your academic advisor.",
+  "answer": "Each college at UCSD must set a minimum requirement for a bachelor's degree equivalent to a total of at least 180 units [1]. This total includes its parts: not less than 60 units at the upper-division level [1]. \n\nSpecifically, a bachelor of arts or bachelor of science degree at Revelle College, Earl Warren College, Seventh College, and Thurgood Marshall College requires a minimum total of 180 units, with at least 60 units of those taken at the upper-division level [2, 5, 6, 7, 8]. \n\nPlease check with your academic advisor to confirm the exact requirements for your specific college and major.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/undergraduate/degree-requirements/index.html",
@@ -75,35 +73,39 @@
    "https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html",
    "https://catalog.ucsd.edu/undergraduate/graduation-requirements/index.html"
   ],
-  "seconds": 2.9
+  "seconds": 3.2
  },
  {
   "question": "What math courses does a mechanical engineering major need?",
-  "answer": "For a mechanical engineering major, the required math courses include MATH 20A, MATH 20B, MATH 20C, MATH 18, MATH 20D, and MATH 20E [1]. \n\nPlease confirm these requirements with your academic advisor.",
+  "answer": "Based on the recommended course sequence for the mechanical engineering major, students take MATH 20A, MATH 20B, MATH 20C, MATH 18, MATH 20D, and MATH 20E [1]. \n\nPlease confirm with your academic advisor to verify all requirements [1].",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/curric/MAE-ug.html"
   ],
-  "seconds": 1.2
+  "seconds": 1.0
  },
  {
   "question": "I took CSE 12 and 21. What should I take next as an AI major?",
-  "answer": "Since you finished CSE 12 and CSE 21, I counted CSE 8B or CSE 11 and CSE 20 or MATH 15A as done.\n\nHere are the required courses marked Ready that you should take next:\nCSE 15L: Software Tools and Techniques Laboratory (2 units) [1, 10]\nCSE 29: Systems Programming and Software Tools (4 units) [1, 10]\nCSE 25: Introduction to Artificial Intelligence (4 units) [1, 10]\n\nAs later steps once you have met their prerequisites, you can take CSE 30, CSE 55, and probability and statistics courses like CSE 103 [1, 10]. For electives, you can look at courses in the Computer Science and Engineering department [1, 4, 5].\n\nPlease confirm these choices with your academic advisor.",
+  "answer": "Since you finished CSE 12 and CSE 21, I counted CSE 8B or CSE 11 and CSE 20 or MATH 15A as done. \n\nHere are the required courses marked Ready that you should take next: CSE 15L (2 units) [1, 7, 10], CSE 29 (4 units) [1, 2, 10], and CSE 25 (4 units) [1, 2, 10]. \n\nRequired courses that are Missing prerequisites and should be taken as later steps include CSE 30 (4 units) [1, 2, 10], CSE 55 (8 units) [1, 10], and CSE 103 (4 units) [1, 10]. \n\nFor electives, you can explore introductory options such as COGS 18 or ECE 15 [1]. \n\nPlease confirm your course plan with an academic advisor [10].",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/curric/CSE-ug.html",
-   "https://catalog.ucsd.edu/curric/CSE-ug.html",
-   "https://catalog.ucsd.edu/curric/CSE-ug.html",
+   "https://catalog.ucsd.edu/courses/CSE.html",
+   "https://catalog.ucsd.edu/courses/CSE.html",
    "https://catalog.ucsd.edu/courses/CSE.html"
   ],
-  "seconds": 1.5
+  "seconds": 1.2
  },
  {
   "question": "What are the requirements for the bioinformatics major?",
-  "answer": "The BS computer science with a specialization in bioinformatics program requires a total of 128 units, not including general-education requirements [3].\n\nFor lower-division requirements, students complete sixty-two or sixty-four units by the end of their sophomore year, including:\n- Computer Science and Engineering: any one of CSE 8B or 11, plus CSE 12, either CSE 15L or CSE 29, CSE 21, and CSE 30, totaling eighteen or twenty units [4].\n- Computer Science and Engineering: a minimum of two units chosen from CSE 3, CSE 4GS, CSE 6R, CSE 6GS, CSE 8A, CSE 25, CSE 42, CSE 86, CSE 89, CSE 90, CSE 91, CSE 95, CSE 99, CSE 180, CSE 180R, MAE 8, MAE 9, COGS 9, COGS 10, COGS 18, ECE 15, ENG 10, ENG 15, NANO 15, CENG 15, or any CSE upper-division course not used to fulfill other degree requirements [4].\n- Mathematics: MATH 20A, MATH 20B, and either MATH 20C or MATH 31BH, plus either MATH 18 or MATH 31AH, totaling sixteen units [4].\n- Chemistry: CHEM 6A-B, totaling eight units [4].\n- Organic Chemistry: either CHEM 40A or CHEM 41A, totaling four units [4].\n- Biology: BILD 1, BILD 3, and BILD 4, totaling ten units [4].\n- Physics: PHYS 2A, totaling four units [4].\n\nFor upper-division requirements, students complete sixty-four upper-division units, including:\n- CSE 100 (four units) [5].\n- CSE 101 (four units) [5].\n- BIBC 100 or CHEM 114A or BIBC 102 (four units) [5].\n- BICD 100 (four units) [5].\n- BIMM 100 (four units) [5].\n- BIMM 101 (four units) [5].\n- The bioinformatics series of twenty units, comprising: CSE 181 or BIMM 181 or BENG 181 (four units); CSE 182 or BIMM 182 or BENG 182 (four units); BENG 183 (four units); CSE 185 (four units); and MATH 186 (four units) [5].\n- Five upper-division electives meeting a twenty-four-unit minimum, which may include courses from Computer Science and Engineering, Cognitive Science (such as COGS 108 or COGS 109), Data Science (DSC 102), Electrical and Computer Engineering (ECE 140A or ECE 140B), Education Studies, Engineering (Global Ties), or Linguistics [5].\n\nPlease confirm these details with your academic advisor.",
+  "answer": "Students wishing to study bioinformatics may choose from majors offered by the School of Biological Sciences, the Department of Bioengineering, and the Department of Computer Science and Engineering [1]. Each participating unit has its own requirements and emphases [1, 5].\n\nFor the BS computer science with a specialization in bioinformatics program, the requirements total 128 units, not including general education [4]. This includes sixty-two or sixty-four lower-division units and sixty-four upper-division units [7, 8]. The lower-division requirements are:\nComputer science and engineering: eighteen or twenty units, comprising CSE 8B or 11, CSE 12, CSE 15L or CSE 29, CSE 21, and CSE 30 [7].\nComputer science and engineering: a minimum of two units chosen from CSE 3, CSE 4GS, CSE 6R, CSE 6GS, CSE 8A, CSE 25, CSE 42, CSE 86, CSE 89, CSE 90, CSE 91, CSE 95, CSE 99, CSE 180, CSE 180R, MAE 8, MAE 9, COGS 9, COGS 10, COGS 18, ECE 15, ENG 10, ENG 15, NANO 15, CENG 15, or any CSE upper-division course not used to fulfill other degree requirements [7].\nMathematics: sixteen units, comprising MATH 20A, MATH 20B, MATH 20C or MATH 31BH, and MATH 18 or MATH 31AH [7].\nChemistry: eight units, comprising CHEM 6A-B [7].\nOrganic chemistry: four units, comprising CHEM 40A or CHEM 41A [7].\nBiology: ten units, comprising BILD 1, BILD 3, and BILD 4 [7].\nPhysics: four units, comprising PHYS 2A [7].\n\nThe upper-division requirements for the computer science specialization total sixty-four units and include CSE 100 (four units), CSE 101 (four units), BIBC 100 or CHEM 114A or BIBC 102 (four units), BICD 100 (four units), BIMM 100 (four units), BIMM 101 (four units), and the twenty-unit bioinformatics series comprising CSE 181 or BIMM 181 or BENG 181 (four units), CSE 182 or BIMM 182 or BENG 182 (four units), BENG 183 (four units), CSE 185 (four units), and MATH 186 (four units), plus upper-division electives [8].\n\nFor the School of Biological Sciences bioinformatics specialization, the requirements total seventy-two lower-division units comprising MATH 18, 20A-B-C; CHEM 6A-B; CHEM 40A-B; PHYS 2A-B-C; BILD 1, 3, 4, and 5; and CSE 11, CSE 12, and CSE 21 [6]. The upper-division requirements total forty-eight units comprising CSE 100, CSE 101, one biochemistry course (BIBC 100, CHEM 114A, BIBC 102, or CHEM 114B), BICD 100, BIMM 100, BIMM 181, BIMM 182, BENG 183, CSE 185, MATH 186, and major electives totaling at least eight units [2].\n\nPlease confirm these specific degree requirements with your academic advisor.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
+   "https://catalog.ucsd.edu/curric/BIOI-ug.html",
+   "https://catalog.ucsd.edu/curric/BIOL-ug.html",
    "https://catalog.ucsd.edu/curric/CSE-ug.html",
+   "https://catalog.ucsd.edu/curric/BIOL-ug.html",
+   "https://catalog.ucsd.edu/curric/BIOL-ug.html",
    "https://catalog.ucsd.edu/curric/CSE-ug.html",
    "https://catalog.ucsd.edu/curric/CSE-ug.html"
   ],
@@ -111,16 +113,12 @@
  },
  {
   "question": "What are the prerequisites for PHYS 2A?",
-  "answer": "The prerequisite for PHYS 2A is any one of MATH 10A-B, MATH 20A, MATH 20B, MATH 20C, or MATH 31BH [1]. MATH 20A is also listed as a prerequisite [2], [4], [5], [7], [8]. \n\nPlease confirm with your academic advisor.",
+  "answer": "The prerequisite for PHYS 2A is any one of MATH 10A-B, MATH 20A, MATH 20B, MATH 20C, or MATH 31BH [1]. Additionally, MATH 20A is a prerequisite for PHYS 2A [2]. \n\nPlease confirm these details with your academic advisor.",
   "model": "gemini-3.5-flash-lite",
   "sources": [
    "https://catalog.ucsd.edu/courses/PHYS.html",
-   "https://catalog.ucsd.edu/curric/ECE-ug.html",
-   "https://catalog.ucsd.edu/curric/ECE-ug.html",
-   "https://catalog.ucsd.edu/curric/ECE-ug.html",
-   "https://catalog.ucsd.edu/curric/ECE-ug.html",
    "https://catalog.ucsd.edu/curric/ECE-ug.html"
   ],
-  "seconds": 1.2
+  "seconds": 1.1
  }
 ]

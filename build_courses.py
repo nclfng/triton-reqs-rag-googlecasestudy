@@ -1,7 +1,7 @@
 """Read the saved course-description pages and write data/courses.json.
 
 This lets the app look up one course's prerequisites exactly, with no embedding calls.
-Run it after scrape.py (and again after adding pages). Pages in data/raw_deferred are included.
+Run it after scrape.py (and again after adding pages).
 """
 import json
 import re
@@ -41,10 +41,9 @@ def parse_page(path):
 
 def main():
     courses = {}
-    for folder in ("data/raw", "data/raw_deferred"):
-        for path in sorted(Path(folder).glob("*.md")):
-            if "SOURCE_URL: https://catalog.ucsd.edu/courses/" in path.read_text()[:300]:
-                courses.update(parse_page(path))
+    for path in sorted(Path("data/raw").glob("*.md")):
+        if "SOURCE_URL: https://catalog.ucsd.edu/courses/" in path.read_text()[:300]:
+            courses.update(parse_page(path))
     Path("data/courses.json").write_text(json.dumps(courses, indent=1))
     print(f"saved {len(courses)} courses to data/courses.json")
 
